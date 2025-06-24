@@ -13,7 +13,7 @@ const Error_page = () => {
                 <h1>Página não encontrada!</h1>
                 
                 <div>
-                    <p>Clique aqui para voltar para a <Link to={'/'}>Página inicial</Link></p>
+                    <p>Clique aqui para voltar para a <Link to={'/home'}>Página inicial</Link></p>
                     <p>Ou clique aqui para ir a <Link to={'/auth/login'}>Página de login</Link></p>
                 </div>
             </section>

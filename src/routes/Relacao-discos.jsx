@@ -24,7 +24,7 @@ const Relacao_discos = () => {
             <main>
                 <nav className="nav-classificacoes">
                     <div>
-                        <Link to={'/'}>HOME</Link>
+                        <Link to={'/home'}>HOME</Link>
                     </div>
 
                     <div>

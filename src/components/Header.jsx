@@ -58,7 +58,7 @@ const Header = () => {
         <header>
             <Header_Style />
 
-            <Link to={"/"} className='header-logo' title='Início'><img src={logo_Site} alt="Logo" /></Link>
+            <Link to={"/home"} className='header-logo' title='Início'><img src={logo_Site} alt="Logo" /></Link>
 
             <section className="section-search">
                 <form onSubmit={handleSearch}>

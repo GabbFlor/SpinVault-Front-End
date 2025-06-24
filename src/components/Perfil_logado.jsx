@@ -135,7 +135,11 @@ const Perfil_logado = () => {
             const diferencaEmMs = agora - data;
             const diferencaEmDias = Math.floor(diferencaEmMs / (1000 * 60 *60 * 24));
             
-            setDiferencaData(diferencaEmDias);
+            if(diferencaEmDias < 0) {
+                setDiferencaData(0);
+            } else {
+                setDiferencaData(diferencaEmDias);
+            }
         };
     
         calcularDiferenca();
@@ -156,7 +160,7 @@ const Perfil_logado = () => {
     if (error) return (
         <div style={{ textAlign: "center" }}>
             <h1>Ocorreu um erro desconhecido</h1>
-            <Link to={'/'} style={{ textDecoration: "underline" }}>Clique aqui para voltar para a página inicial</Link>
+            <Link to={'/home'} style={{ textDecoration: "underline" }}>Clique aqui para voltar para a página inicial</Link>
         </div>
     );
 

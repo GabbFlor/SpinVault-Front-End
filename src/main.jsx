@@ -39,16 +39,16 @@ const routes = createBrowserRouter([
     children: [
       // rotas publicas (podem ser acessadas por qualquer um)
       {
+        path: "/",
+        element: <Landing_page />
+      },
+      {
         path: "/auth/registro",
         element: <Registro />
       },
       {
         path: "/auth/login",
         element: <Login />
-      },
-      {
-        path: "/apresentacao",
-        element: <Landing_page />
       },
       {
         path: "/PaymentConfirm",
@@ -61,7 +61,7 @@ const routes = createBrowserRouter([
       
       // rotas apenas para users autenticados (APLICAR LÓGICA PARA MINHA API)
       {
-        path: "/",
+        path: "/home",
         element: (
           <ProtectedRoutes>
             <Home />

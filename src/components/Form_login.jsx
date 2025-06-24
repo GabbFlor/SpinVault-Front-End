@@ -57,7 +57,7 @@ const Form_login = () => {
                 .then(() => {
                     login(response.data.token);
 
-                    navigate('/');
+                    navigate('/home');
                 })
             }
         })

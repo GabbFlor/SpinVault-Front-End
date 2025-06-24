@@ -8,7 +8,7 @@ const Header_apresentacao = () => {
         <header>
             <Header_Style />
 
-            <Link to={"/"} className='header-logo' title='Início'><img src={logo_Site} alt="Logo" /></Link>
+            <Link to={"/home"} className='header-logo' title='Início'><img src={logo_Site} alt="Logo" /></Link>
 
             <Link to={"/auth/login"} title='Perfil'><BsPersonFill className='icon-person' /></Link>
         </header>

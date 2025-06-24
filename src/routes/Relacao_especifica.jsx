@@ -25,7 +25,7 @@ const Relacao_especifica = () => {
             <main>
                 <nav className="nav-classificacoes">
                     <div>
-                        <Link to={'/'}>HOME</Link>
+                        <Link to={'/home'}>HOME</Link>
                     </div>
 
                     <div></div>

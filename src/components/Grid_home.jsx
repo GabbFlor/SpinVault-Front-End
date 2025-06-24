@@ -24,13 +24,13 @@ const Grid_home = () => {
             {/* discos nacionais */}
             <div className="item-grid">
                 <img src={ImgGrid3} alt="img3" />
-                <Link to={`relacao-especifica/discos-nacionais`}>Clique aqui!</Link>
+                <Link to={`/relacao-especifica/discos-nacionais`}>Clique aqui!</Link>
             </div>
 
             {/* discos internacionais */}
             <div className="item-grid">
                 <img src={ImgGrid4} alt="img4" />
-                <Link to={`relacao-especifica/discos-internacionais`}>Clique aqui!</Link>
+                <Link to={`/relacao-especifica/discos-internacionais`}>Clique aqui!</Link>
             </div>
 
             {/* infos gerais */}

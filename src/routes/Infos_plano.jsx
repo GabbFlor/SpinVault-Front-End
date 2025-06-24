@@ -53,7 +53,6 @@ const Infos_plano = () => {
                 navigate("/not-found")
             } else {
                 console.error(`Erro ao buscar peril do usuário: ${error.response.status}`)
-                console.log("testeeee")
                 throw error;
             }
         }
@@ -146,7 +145,7 @@ const Infos_plano = () => {
     if (error || errorPlan) return (
         <div style={{ textAlign: "center" }}>
             <h1>Ocorreu um erro desconhecido</h1>
-            <Link to={'/'} style={{ textDecoration: "underline" }}>Clique aqui para voltar para a página inicial</Link>
+            <Link to={'/home'} style={{ textDecoration: "underline" }}>Clique aqui para voltar para a página inicial</Link>
         </div>
     );
 
@@ -173,7 +172,7 @@ const Infos_plano = () => {
                     }).then (() => { 
                         queryClient.clear();
     
-                        navigate(`/`)
+                        navigate(`/home`)
                     })
                 } catch (error) {
                     if (error.response && error.response.status === 401) {
