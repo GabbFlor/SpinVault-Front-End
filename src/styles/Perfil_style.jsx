@@ -512,6 +512,10 @@ const Perfil_style = createGlobalStyle `
             right: 3%;
             font-size: 12.5px;
         }
+
+        .alert-perfil h2 {
+            font-size: 2.5vw;
+        }
     }
 
     @media (max-width: 500px) {
@@ -633,6 +637,10 @@ const Perfil_style = createGlobalStyle `
             bottom: 15%;
             right: 3%;
             font-size: 14px;
+        }
+
+        .alert-perfil h2 {
+            font-size: 4.5vw;
         }
     }
 
