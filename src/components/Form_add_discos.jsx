@@ -263,6 +263,13 @@ const Form_add_discos = () => {
         }),
     };
 
+    const gerarLinkNoDiscogs = (titulo) => {
+        if (!titulo) return "#";
+
+        const query = titulo.trim().replace(/\s+/g, '+');
+        return `https://www.discogs.com/pt_BR/search?q=${query}&type=all`;
+    }
+
     return (
         <form className='form-direita' onSubmit={HandleSubmit}>
             <h1 className='title-mobile'>Cadastro de discos do Spin Vault</h1>
@@ -297,6 +304,18 @@ const Form_add_discos = () => {
                     placeholder='Digite...'
                     disabled={inputDesativado}
                 />
+
+                {/* link para o discogs */}
+                {tituloAlbum.trim() && (
+                    <a 
+                        href={gerarLinkNoDiscogs(tituloAlbum)}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        
+                    >
+                        Buscar no Discogs
+                    </a>
+                )}
             </div>
 
             <div className='div-select'>

@@ -1,5 +1,5 @@
 import Icon_disk_img from '../assets/icon_disk.webp'
-import { BsPersonFill, BsSearch } from "react-icons/bs";
+import { BsPersonFill, BsSearch, BsHouseDoorFill } from "react-icons/bs";
 import Header_Style from '../styles/Header_Style';
 import logo_Site from '../assets/logo_escrita.webp'
 import { Link, useNavigate } from 'react-router-dom';
@@ -80,7 +80,11 @@ const Header = () => {
                 </div>
             </section>
 
-            <Link to={"/perfil"} title='Perfil'><BsPersonFill className='icon-person' /></Link>
+            <nav className='header-icons-div'>
+                <Link to={"/perfil"} title='Perfil'><BsPersonFill className='icon-person' /></Link>
+
+                <Link to={"/"} title='Página de apresentação'><BsHouseDoorFill className='icon-house' /></Link>
+            </nav>
         </header>
     )
 }

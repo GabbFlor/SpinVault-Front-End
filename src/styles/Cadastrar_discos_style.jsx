@@ -102,11 +102,21 @@ const Cadastrar_discos_style = createGlobalStyle `
         width: 100%;
     }
 
-    .div-type label, .div-select label {
+    .div-type label, .div-select label, .div-type a {
         cursor: text;
         font-family: "Michroma", sans-serif;
         font-weight: 400;
         font-size: 1vw;
+    }
+
+    .div-type a {
+        color:rgb(173, 111, 93);
+        margin-top: 1.5px
+    }
+
+    .div-type a:hover {
+        text-decoration: underline;
+        cursor: pointer;
     }
 
     .div-type input {
@@ -207,7 +217,7 @@ const Cadastrar_discos_style = createGlobalStyle `
             font-size: 0.85vw;
         }
 
-        .div-type label, .div-select label {
+        .div-type label, .div-select label, .div-type a {
             font-size:0.75vw;
         }
 
@@ -232,7 +242,7 @@ const Cadastrar_discos_style = createGlobalStyle `
             align-items: center;
         }
 
-        .div-type label, .div-select label {
+        .div-type label, .div-select label, .div-type a {
             font-size: 3vw;
         }
 

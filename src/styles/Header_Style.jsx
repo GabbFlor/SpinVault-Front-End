@@ -74,8 +74,20 @@ const Header_Style = createGlobalStyle `
         border-bottom-right-radius: 25px;
     }
 
+    .header-icons-div {
+        display: inline-flex;
+        align-items: center;
+        gap: 2.5px;
+    }
+
     .icon-person {
         font-size: 2rem;
+        cursor: pointer;
+        color: black;
+    }
+
+    .icon-house {
+        font-size: 1.75rem;
         cursor: pointer;
         color: black;
     }

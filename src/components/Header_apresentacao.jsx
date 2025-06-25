@@ -1,6 +1,6 @@
 import Header_Style from "../styles/Header_Style";
 import logo_Site from '../assets/logo_escrita.webp';
-import { BsPersonFill, BsSearch } from "react-icons/bs";
+import { BsPersonFill, BsHouseDoorFill } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 
 const Header_apresentacao = () => {
@@ -10,7 +10,11 @@ const Header_apresentacao = () => {
 
             <Link to={"/home"} className='header-logo' title='Início'><img src={logo_Site} alt="Logo" /></Link>
 
-            <Link to={"/auth/login"} title='Perfil'><BsPersonFill className='icon-person' /></Link>
+            <nav className="header-icons-div">
+                <Link to={"/auth/login"} title='Perfil'><BsPersonFill className='icon-person' /></Link>
+
+                <Link to={"/home"} title='Página inicial'><BsHouseDoorFill className='icon-house' /></Link>
+            </nav>
         </header>
     )
 }
