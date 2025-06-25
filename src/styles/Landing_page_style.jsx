@@ -9,7 +9,7 @@ const Landing_page_style = createGlobalStyle `
     }
 
     .Pag_landing_page main {
-        min-height: fit-content;
+        min-height: auto;
         min-height: -webkit-fill-available; /* Safari mobile */
         height: auto;
         display: flex;
@@ -20,7 +20,7 @@ const Landing_page_style = createGlobalStyle `
 
     .banner_section {
         width: 100%;
-        height: calc(fit-content - 50px);
+        margin-bottom: -5px;
     }
 
     .banner_section img {
