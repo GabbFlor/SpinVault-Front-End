@@ -18,6 +18,12 @@ const Landing_page_style = createGlobalStyle `
         align-items: center;
     }
 
+    @supports (-webkit-touch-callout: none) {
+        .Pag_landing_page main {
+            min-height: -webkit-fill-available;
+        }
+    }
+
     .banner_section {
         width: 100%;
         height: calc(fit-content - 50px);
