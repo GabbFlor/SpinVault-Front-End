@@ -255,6 +255,12 @@ const Form_add_discos = () => {
                 boxShadow: '0 0 0 1px #c47d699a'
             },
         }),
+        input: (base) => ({
+            ...base,
+            fontFamily: 'Michroma, sans-serif',
+            fontSize,
+            color: '#4a4a4a',
+        }),
     };
 
     return (

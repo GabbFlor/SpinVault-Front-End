@@ -6,9 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Landing_page_style from "../styles/Landing_page_style";
 import { BsCheck2 } from "react-icons/bs";
 import Swal from "sweetalert2";
+import { useAuth } from "../AuthContext";
+import { useEffect } from "react";
 
 const Landing_page = () => {
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
 
     function info_Plano() {
         Swal.fire({
@@ -25,6 +28,24 @@ const Landing_page = () => {
             }
         })
     }
+
+    useEffect(() => {
+        if(isAuthenticated) {
+            Swal.fire({
+                icon: "info",
+                text: "Identificamos que você já está autenticado, deseja ir para o nosso painel inicial?",
+                showConfirmButton: true,
+                confirmButtonText: "Vamos!",
+                showCancelButton: true,
+                cancelButtonText: "Continuar aqui."
+            })
+            .then(result => {
+                if (result.isConfirmed) {
+                    navigate("/home");
+                }
+            })
+        }
+    }, [])
 
     return (
         <div className="Pag_landing_page">
