@@ -9,21 +9,14 @@ const Landing_page_style = createGlobalStyle `
     }
 
     .Pag_landing_page main {
-        width: 100%;
-        /* essa bomba aqui para n ficar branco quando o conteúdo não chegar até o fim da página */
         min-height: fit-content;
-        height: calc(100vh - 60px);
+        min-height: -webkit-fill-available; /* Safari mobile */
+        height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: red;
     }
 
-    @supports (-webkit-touch-callout: none) {
-        .Pag_landing_page main {
-            min-height: -webkit-fill-available;
-        }
-    }
 
     .banner_section {
         width: 100%;
