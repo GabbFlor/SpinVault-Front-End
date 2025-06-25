@@ -11,8 +11,8 @@ const Home_Style = createGlobalStyle `
     .Pag-Home main {
         width: 100%;
         /* essa bomba aqui para n ficar branco quando o conteúdo não chegar até o fim da página */
-        min-height: fit-content;
-        height: calc(100vh - 60px);
+        min-height: 100vh; /* dá fallback para todos os navegadores */
+        height: auto;
         padding: 25px;
         display: flex;
         flex-direction: column;

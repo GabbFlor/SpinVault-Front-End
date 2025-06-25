@@ -10,30 +10,17 @@ const Landing_page_style = createGlobalStyle `
 
     .Pag_landing_page main {
         width: 100%;
-        min-height: fit-content;
-        height: calc(100vh - 60px);
+        min-height: 100vh; /* dá fallback para todos os navegadores */
+        height: auto;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    // bgl para iphone
-    @supports (-webkit-touch-callout: none) {
-        @media screen and (max-width: 768px) {
-            .Pag_landing_page main {
-                min-height: -webkit-fill-available;
-                height: auto;
-            }
-
-            .banner_section {
-                width: 100%;
-                margin-bottom: -10px;
-            }
-        }
-    }
-
     .banner_section {
         width: 100%;
+        margin-bottom: -10px;
     }
 
     .banner_section img {
