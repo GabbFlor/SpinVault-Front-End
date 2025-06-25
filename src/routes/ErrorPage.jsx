@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Error_img from '../assets/favicon.png'
+import Error_img from '../assets/favicon.ico'
 import Error_page_style from '../styles/Error_page_style';
 
 const Error_page = () => {

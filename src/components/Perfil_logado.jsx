@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { tailChase } from 'ldrs';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Card_img from '../assets/card-img.png'
+import Card_img from '../assets/card-img.webp'
 import Swal from 'sweetalert2';
 import { useAuth } from '../AuthContext';
 import axios from 'axios';

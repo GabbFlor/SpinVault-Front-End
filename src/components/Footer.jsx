@@ -1,4 +1,4 @@
-import Logo from "../assets/logo_footer.png"
+import Logo from "../assets/logo_footer.webp"
 import { BsInstagram, BsFacebook, BsTwitterX } from "react-icons/bs"
 import Footer_style from "../styles/Footer_style";
 

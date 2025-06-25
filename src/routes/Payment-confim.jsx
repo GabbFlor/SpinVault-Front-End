@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import certinho from "../assets/certinho.png"
+import certinho from "../assets/certinho.webp"
 import Confirmacao_pagamento_style from "../styles/Confirmacao_pagamento_style";
 
 const Payment_confirm = () => {

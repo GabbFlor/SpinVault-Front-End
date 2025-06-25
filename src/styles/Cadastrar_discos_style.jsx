@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import backgroundImage from '../assets/form-backgroundjpeg.jpeg'
+import backgroundImage from '../assets/form-backgroundjpeg.webp'
 
 const Cadastrar_discos_style = createGlobalStyle `
     .Pag-cadastrar-discos {

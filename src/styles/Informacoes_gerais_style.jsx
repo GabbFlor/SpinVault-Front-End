@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Background_image from "../assets/background_infos_gerais.jpeg"
+import Background_image from "../assets/background_infos_gerais.webp"
 
 const Informacoes_gerais_style = createGlobalStyle `
     .Pag-informacoes-gerais {

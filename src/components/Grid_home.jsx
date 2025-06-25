@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import ImgGrid1 from '../assets/grid1.png'
-import ImgGrid2 from '../assets/grid2.png'
-import ImgGrid3 from '../assets/grid3.png'
-import ImgGrid4 from '../assets/grid4.png'
-import ImgGrid5 from '../assets/grid5.png'
-import ImgGrid6 from '../assets/grid6.png'
+import ImgGrid1 from '../assets/grid1.webp'
+import ImgGrid2 from '../assets/grid2.webp'
+import ImgGrid3 from '../assets/grid3.webp'
+import ImgGrid4 from '../assets/grid4.webp'
+import ImgGrid5 from '../assets/grid5.webp'
+import ImgGrid6 from '../assets/grid6.webp'
 
 const Grid_home = () => {
     return (

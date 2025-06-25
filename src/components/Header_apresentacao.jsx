@@ -1,5 +1,5 @@
 import Header_Style from "../styles/Header_Style";
-import logo_Site from '../assets/logo_escrita.png';
+import logo_Site from '../assets/logo_escrita.webp';
 import { BsPersonFill, BsSearch } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 

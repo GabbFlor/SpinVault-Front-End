@@ -1,7 +1,7 @@
 import Header_apresentacao from "../components/Header_apresentacao";
-import banner from "../assets/banner.png"
-import Mini_disco from "../assets/Mini_disco.png"
-import clique_aqui from "../assets/imagem_cliqueaqui.png"
+import banner from "../assets/banner.webp"
+import Mini_disco from "../assets/Mini_disco.webp"
+import clique_aqui from "../assets/imagem_cliqueaqui.webp"
 import { Link, useNavigate } from "react-router-dom";
 import Landing_page_style from "../styles/Landing_page_style";
 import { BsCheck2 } from "react-icons/bs";

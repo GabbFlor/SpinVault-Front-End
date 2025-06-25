@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Background_image from '../assets/background-registro-login.jpeg'
+import Background_image from '../assets/background-registro-login.webp'
 
 const Registro_login_style = createGlobalStyle `
     .Pag-registro {
