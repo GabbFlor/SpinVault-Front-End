@@ -147,8 +147,8 @@ const Form_add_discos = () => {
                         setTituloAlbum("");
                         setTituloAlbumToLower("");
                         setTamanhoDisco(null);
-                        setAnoDisco(0);
-                        setAnoDiscoTiragem(0);
+                        setAnoDisco("");
+                        setAnoDiscoTiragem("");
                         setOrigemArtista(null)
                         setOrigemDisco(null);
                         setSituacaoDisco(null);

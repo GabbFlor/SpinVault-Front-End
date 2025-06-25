@@ -179,6 +179,7 @@ const Perfil_style = createGlobalStyle `
     .cards-disks {
         display: inline-flex;
         gap: 5vw;
+        padding-bottom: 50px;
     }
 
     .infos-up {
