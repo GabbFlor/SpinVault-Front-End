@@ -16,6 +16,7 @@ const Landing_page_style = createGlobalStyle `
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: red;
     }
 
     @supports (-webkit-touch-callout: none) {
