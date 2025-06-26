@@ -70,7 +70,17 @@ const Planos = () => {
                     
                             navigate(`/auth/login`);
                         })
-                    } else {
+                    } else if (error.response && error.response.status === 409) {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Aviso",
+                            text: `Identificamos que a sua conta possui um pagamento pendente, para evitar problemas, aguarde o final do pagamento atual e tente novamente mais tarde se necessário.`,
+                            showCancelButton: false,
+                            showConfirmButton: true,
+                            confirmButtonText: "Ok"
+                        })
+                    } 
+                    else {
                         Swal.fire({
                             icon: "error",
                             title: "Error!",

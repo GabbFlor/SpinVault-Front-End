@@ -7,7 +7,7 @@ import { useAuth } from "../AuthContext";
 import axios from "axios";
 import { apiUrl } from "../API";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -58,31 +58,36 @@ const Home = () => {
 
         staleTime: 1000 * 60 * 5,
     });
-
-    if (error) {
-        // console.error(`Erro ao buscar perfil do usuário: ${error.message}`)
-    }
     
     useEffect(() => {
-        if (userProfile) {
-            if (userProfile.role == "DESATIVADO") {
-                Swal.fire({
-                    icon: "warning",
-                    title: "Aviso",
-                    text: "Sua conta atualmente ainda não foi ativada, para usar todas as funcionalidades, primeiro assine um de nossos planos.",
-                    showConfirmButton: true,
-                    confirmButtonText: "Planos",
-                    showCancelButton: true,
-                    cancelButtonText: "Cancelar"
-                })
-                .then(result => {
-                    if (result.isConfirmed) {
-                        navigate("/planos");
+        const verificarSeTemPlanoPendente = async () => {
+            try {
+                let response = await axios.get(`${apiUrl}/payment/verificarPagamentoPendente`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
                     }
                 })
+
+                if (response.status === 200) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Aviso",
+                        text: "Verificamos que você possui um pagamento pendente referente a algum plano de assinatura, após você receber o email de confirmação, liberaremos o acesso aos nossos serviços.",
+                        showConfirmButton: true,
+                        confirmButtonText: "Ok",
+                        showCancelButton: false,
+                    })
+                } else if (response.status === 204) {
+                    // console.log("nao possui plano pendente")
+                }
+            } catch (error) {
+                console.error(`Erro ao buscar peril do usuário: ${error.message}`)
+                throw error;
             }
         }
-    }, [userProfile])
+
+        verificarSeTemPlanoPendente();
+    }, [])
 
     return (
         <div className="Pag-Home">

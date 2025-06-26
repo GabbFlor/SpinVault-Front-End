@@ -7,6 +7,7 @@ import axios from 'axios'
 import { apiUrl } from '../API'
 import { useAuth } from '../AuthContext'
 import { useNavigate } from 'react-router-dom'
+import { BsDiscFill } from "react-icons/bs";
 
 const Tamanhos = [
     { value: 12, label: 12 },
@@ -311,9 +312,9 @@ const Form_add_discos = () => {
                         href={gerarLinkNoDiscogs(tituloAlbum)}
                         target='_blank'
                         rel='noopener noreferrer'
-                        
+                        title='Buscar no discogs'
                     >
-                        Buscar no Discogs
+                        <BsDiscFill />
                     </a>
                 )}
             </div>

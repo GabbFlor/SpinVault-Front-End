@@ -277,6 +277,10 @@ const Pesquisa_inteligente_style = createGlobalStyle `
                 gap: 0px;
             }
 
+            .title {
+                font-size: 3.5vw;
+            }
+
             .nav-classificacoes div a, .btn-carregar {
                 font-size: 2vw;
                 width: 15vw;
@@ -336,6 +340,10 @@ const Pesquisa_inteligente_style = createGlobalStyle `
 
             .nav-classificacoes div {
                 gap: 0px;
+            }
+
+            .title {
+                font-size: 4.5vw;
             }
 
             .nav-classificacoes div a, .btn-carregar {

@@ -100,9 +100,10 @@ const Cadastrar_discos_style = createGlobalStyle `
         display: flex;
         flex-direction: column;
         width: 100%;
+        position: relative;
     }
 
-    .div-type label, .div-select label, .div-type a {
+    .div-type label, .div-select label {
         cursor: text;
         font-family: "Michroma", sans-serif;
         font-weight: 400;
@@ -110,13 +111,17 @@ const Cadastrar_discos_style = createGlobalStyle `
     }
 
     .div-type a {
-        color:rgb(173, 111, 93);
-        margin-top: 1.5px
+        color: #000;
+        font-size: 1.5vw;
+        position: absolute;
+        right: 2.5%;
+        top: 47.5%;
+        transition: color 0.3s ease;
     }
 
     .div-type a:hover {
-        text-decoration: underline;
         cursor: pointer;
+        color: rgb(173, 111, 93)
     }
 
     .div-type input {
@@ -217,8 +222,12 @@ const Cadastrar_discos_style = createGlobalStyle `
             font-size: 0.85vw;
         }
 
-        .div-type label, .div-select label, .div-type a {
+        .div-type label, .div-select label {
             font-size:0.75vw;
+        }
+
+        .div-type a {
+            font-size: 1.20vw
         }
 
         .div-type input {
@@ -244,6 +253,11 @@ const Cadastrar_discos_style = createGlobalStyle `
 
         .div-type label, .div-select label, .div-type a {
             font-size: 3vw;
+        }
+
+        .div-type a {
+            font-size: 3.5vw !important;
+            top: 50%;
         }
 
         .section-form-add-disks {
@@ -287,6 +301,11 @@ const Cadastrar_discos_style = createGlobalStyle `
 
         .div-type label, .div-select label {
             font-size: 2.5vw;
+        }
+
+        .div-type a {
+            font-size: 2.75vw;
+            top: 52.5%;
         }
 
         .section-form-add-disks {

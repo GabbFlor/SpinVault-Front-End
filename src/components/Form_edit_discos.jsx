@@ -8,6 +8,7 @@ import { ring2 } from 'ldrs'
 import axios from 'axios'
 import { apiUrl } from '../API'
 import { useAuth } from '../AuthContext'
+import { BsDiscFill } from "react-icons/bs";
 
 const Tamanhos = [
     { value: 12, label: 12 },
@@ -426,9 +427,9 @@ const Form_edit_discos = ({ id_disco }) => {
                         href={gerarLinkNoDiscogs(tituloAlbum)}
                         target='_blank'
                         rel='noopener noreferrer'
-                        
+                        title='Buscar no discogs'
                     >
-                        Buscar no Discogs
+                        <BsDiscFill />
                     </a>
                 )}
             </div>
