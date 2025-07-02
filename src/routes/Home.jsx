@@ -96,7 +96,7 @@ const Home = () => {
             <Header />
             
             <main>
-                <h1>Controle de discos de vinil</h1>
+                <h1>Controle de discos de vinil cu</h1>
 
                 <Grid_home />
             </main>
