@@ -4,7 +4,7 @@ import Mini_disco from "../assets/Mini_disco.webp"
 import clique_aqui from "../assets/imagem_cliqueaqui.webp"
 import { Link, useNavigate } from "react-router-dom";
 import Landing_page_style from "../styles/Landing_page_style";
-import { BsCheck2 } from "react-icons/bs";
+import { BsCheck2, BsX } from "react-icons/bs";
 import Swal from "sweetalert2";
 
 const Landing_page = () => {
@@ -19,11 +19,11 @@ const Landing_page = () => {
             confirmButtonText: 'Registrar',
             cancelButtonText: 'Fechar',
         })
-        .then(result => {
-            if(result.isConfirmed) {
-                navigate("/auth/registro")
-            }
-        })
+            .then(result => {
+                if (result.isConfirmed) {
+                    navigate("/auth/registro")
+                }
+            })
     }
 
     return (
@@ -42,12 +42,12 @@ const Landing_page = () => {
                 <section className="text_section">
                     <div>
                         <h1>Vinil</h1>
-                        <p>O Som que Nunca Sai de Moda Apaixonado 
-                            por vinil? Então você vai adorar nossa 
-                            plataforma! Com um catálogo que vai de 
-                            clássicos atemporais a discos obscuros e 
-                            raros, temos algo para todos os gostos. 
-                            Navegue, descubra e reviva a magia do vinil. 
+                        <p>O Som que Nunca Sai de Moda Apaixonado
+                            por vinil? Então você vai adorar nossa
+                            plataforma! Com um catálogo que vai de
+                            clássicos atemporais a discos obscuros e
+                            raros, temos algo para todos os gostos.
+                            Navegue, descubra e reviva a magia do vinil.
                             Afinal, música boa nunca sai de moda.</p>
                     </div>
                 </section>
@@ -91,14 +91,31 @@ const Landing_page = () => {
                     <section className="card-section">
                         <div className="card">
                             <div>
-                                <h1>Mensal</h1>
-                                <h2>R$14,99<span>/mes</span></h2>
+                                <h1>Plano Free</h1>
+                                <h2>R$00,00<span>/mes</span></h2>
                             </div>
 
                             <ul>
-                                <li><BsCheck2 className="icon-card"/> Essencial</li>
-                                <li><BsCheck2 className="icon-card"/> Assinatura mensal</li>
-                                <li><BsCheck2 className="icon-card"/> Cancele quando quiser</li>
+                                <li><BsCheck2 className="icon-card" /> anuncios</li>
+                                <li><BsCheck2 className="icon-card" /> limite de 100 Discos</li>
+                                <li><BsX className="icon-card" /> Importação com tabela Excel</li>
+                            </ul>
+
+                            <button onClick={() => info_Plano()}>Assinar agora</button>
+                        </div>
+
+                        <div className="card">
+                            <div>
+                                <h1>Mensal</h1>
+                                <h2>R$9,99<span>/mes</span></h2>
+                            </div>
+
+                            <ul>
+                                <li><BsX className="icon-card" /> anuncios</li>
+                                <li><BsCheck2 className="icon-card" /> Sem limites de Discos</li>
+                                <li><BsCheck2 className="icon-card" /> Importação com tabela Excel</li>
+                                <li><BsCheck2 className="icon-card" /> Cancele quando quiser</li>
+
                             </ul>
 
                             <button onClick={() => info_Plano()}>Assinar agora</button>
@@ -107,13 +124,14 @@ const Landing_page = () => {
                         <div className="card">
                             <div>
                                 <h1>TriMensal</h1>
-                                <h2>R$39,90<span>/³meses</span></h2>
+                                <h2>R$26,90<span>/³meses</span></h2>
                             </div>
 
                             <ul>
-                                <li><BsCheck2 className="icon-card"/> 3 meses</li>
-                                <li><BsCheck2 className="icon-card"/> Assinatura Trimensal</li>
-                                <li><BsCheck2 className="icon-card"/> Cancele quando quiser</li>
+                                <li><BsX className="icon-card" /> anuncios</li>
+                                <li><BsCheck2 className="icon-card" /> Sem limites de Discos</li>
+                                <li><BsCheck2 className="icon-card" /> Importação com tabela Excel</li>
+                                <li><BsCheck2 className="icon-card" /> Cancele quando quiser</li>
                             </ul>
 
                             <button onClick={() => info_Plano()}>Assinar agora</button>
@@ -122,20 +140,21 @@ const Landing_page = () => {
                         <div className="card">
                             <div>
                                 <h1>Anual</h1>
-                                <h2>R$149,90<span>/ano</span></h2>
+                                <h2>R$99,90<span>/ano</span></h2>
                             </div>
 
                             <ul>
-                                <li><BsCheck2 className="icon-card"/> 12 meses</li>
-                                <li><BsCheck2 className="icon-card"/> Assinatura Anual</li>
-                                <li><BsCheck2 className="icon-card"/> Cancele quando quiser</li>
+                                <li><BsX className="icon-card" /> anuncios</li>
+                                <li><BsCheck2 className="icon-card" /> Sem limites de Discos</li>
+                                <li><BsCheck2 className="icon-card" /> Importação com tabela Excel</li>
+                                <li><BsCheck2 className="icon-card" /> Cancele quando quiser</li>
                             </ul>
 
                             <button onClick={() => info_Plano()}>Assinar agora</button>
                         </div>
                     </section>
 
-                    
+
                 </section>
             </main>
             <footer>

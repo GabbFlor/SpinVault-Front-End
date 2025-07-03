@@ -9,9 +9,9 @@ import axios from 'axios';
 import { apiUrl } from '../API';
 
 const Perfil_logado = () => {
-    const [ diferencaData, setDiferencaData ] = useState(0);
-    const [ carregando, setCarregando ] = useState(false);
-    const [ ultimosDiscos, setUltimosDiscos ] = useState([]);
+    const [diferencaData, setDiferencaData] = useState(0);
+    const [carregando, setCarregando] = useState(false);
+    const [ultimosDiscos, setUltimosDiscos] = useState([]);
     const queryClient = useQueryClient();
     tailChase.register()
     const { logout, token } = useAuth();
@@ -61,7 +61,7 @@ const Perfil_logado = () => {
 
         staleTime: 1000 * 60 * 5
     });
-    
+
     const contadorDeDiscos = async () => {
         try {
             let response = await axios.get(`${apiUrl}/discos/contar`, {
@@ -75,7 +75,7 @@ const Perfil_logado = () => {
 
                 return qtdDiscos;
             }
-        } catch(error) {
+        } catch (error) {
             if (error.response.status === 403) {
                 return 0;
             }
@@ -126,22 +126,22 @@ const Perfil_logado = () => {
 
     useEffect(() => {
         const calcularDiferenca = () => {
-            if(!userProfile) return null; 
+            if (!userProfile) return null;
 
             // calculando tempo de criacao da conta em dias
             const data = new Date(userProfile.criado_em);
             const agora = new Date();
 
             const diferencaEmMs = agora - data;
-            const diferencaEmDias = Math.floor(diferencaEmMs / (1000 * 60 *60 * 24));
-            
-            if(diferencaEmDias < 0) {
+            const diferencaEmDias = Math.floor(diferencaEmMs / (1000 * 60 * 60 * 24));
+
+            if (diferencaEmDias < 0) {
                 setDiferencaData(0);
             } else {
                 setDiferencaData(diferencaEmDias);
             }
         };
-    
+
         calcularDiferenca();
 
         pegarUltimosDiscos();
@@ -151,8 +151,8 @@ const Perfil_logado = () => {
         <div className="carregamento-perfil-page">
             <l-tail-chase
                 size="80"
-                speed="1.75" 
-                color="#fff"  
+                speed="1.75"
+                color="#fff"
             ></l-tail-chase>
         </div>
     );
@@ -172,28 +172,33 @@ const Perfil_logado = () => {
             showConfirmButton: true,
             showCancelButton: true,
         })
-        .then(async(result) => {
-            if (result.isConfirmed) {
-                // Remove qualquer cache relacionado a discos que tiver no navegador do usuário
-                queryClient.clear();
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    // Remove qualquer cache relacionado a discos que tiver no navegador do usuário
+                    queryClient.clear();
 
-                logout();
-            }
-        })
+                    logout();
+                }
+            })
     }
 
     return (
         <section className='section-perfil'>
             <div>
-                {userProfile.role == "DESATIVADO" ? 
+                {userProfile.role == "BANIDO" ?
                     (<div className='alert-perfil'>
                         <h2>
-                            A sua conta ainda não está ativada, portanto algumas funçoes estão limitadas.<br />
-                            Assine um de nossos <Link to={`/planos`}>planos</Link> para liberar todas as funcionalidades.
+                            A sua conta foi suspensa por causa de violações, contate a equipe de desenvolvimento para mais informações
                         </h2>
                     </div>)
-                        :
-                    (<div></div>)
+                    : userProfile.role == "USER_FREE" ? (<div className='alert-perfil alert-perfil-free'>
+                        <h2>
+                            A sua conta atualmente está com o plano gratuito (com limitações).<br />
+                            Assine um de nossos <Link to={`/planos`}>planos</Link> para liberar todas as funcionalidades.
+                        </h2>
+                    </div>
+                    ) :
+                        (<div></div>)
                 }
             </div>
 
@@ -211,9 +216,9 @@ const Perfil_logado = () => {
                         <button onClick={() => handleLogout()} className='btn-logout'>Logout</button>
                         <Link to={'/perfil/editar'} className='btn-logout'>Editar</Link>
 
-                        {userProfile.role == "DESATIVADO" ? 
-                            (<div></div>) 
-                        : 
+                        {userProfile.role == "BANIDO" ?
+                            (<div></div>)
+                            :
                             (<Link to={"/perfil/plano"} className='btn-logout'>Plano</Link>)
                         }
                         <Link></Link>
