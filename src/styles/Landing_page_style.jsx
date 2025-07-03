@@ -119,7 +119,7 @@ const Landing_page_style = createGlobalStyle `
 
     .card-section {
         display: inline-flex;
-        gap: 10vw
+        gap: 5vw
     }
 
     .card {

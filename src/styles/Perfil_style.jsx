@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const Perfil_style = createGlobalStyle `
+const Perfil_style = createGlobalStyle`
     .Pag-perfil, .Pag-editar-perfil, .Pag-mudar-senha {
         display: flex;
         flex-direction: column;
@@ -308,6 +308,13 @@ const Perfil_style = createGlobalStyle `
         border: 1.5px solid rgb(255, 0, 0);
         padding: 20px;
         border-radius: 5px;
+    }
+    .alert-perfil-free {
+        background-color:rgba(255, 187, 0, 0.32) !important;
+        border: 1.5px solid rgb(255, 196, 0) !important;
+    }
+    .alert-perfil-free a{
+        color:rgb(109, 87, 14) !important;
     }
 
     .alert-perfil h2 {
