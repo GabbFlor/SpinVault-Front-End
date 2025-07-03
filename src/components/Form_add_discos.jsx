@@ -223,10 +223,6 @@ const Form_add_discos = () => {
             })
         }
     };
-    // NOVO: Funções para interagir com a API do Discogs
-    const discogsApi = axios.create({
-        baseURL: `${apiUrl}`
-    });
 
     const handleSearchByCatalogNumber = async () => {
         if (!catalogNumber) {
@@ -238,7 +234,13 @@ const Form_add_discos = () => {
         setSearchResults([]);
 
         try {
-            const response = await discogsApi.get(`/discos/pesquisarNoDiscogs?catalogoId=${catalogNumber}`);
+            const response = await axios.get(`${apiUrl}/discos/pesquisarNoDiscogs?catalogoId=${catalogNumber}`, 
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
             
             if (response.status === 200) {
                 setSearchResults(response.data.results);
@@ -261,7 +263,14 @@ const Form_add_discos = () => {
         setSearchResults([]);
 
         try {
-            const response = await discogsApi.get(`/releases/${releaseId}`);
+            const response = await axios.get(`${apiUrl}/discos/recuperarDiscoDiscogs/${releaseId}`, 
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+
             const data = response.data;
 
             // Preenchendo os estados do seu formulário
@@ -286,6 +295,7 @@ const Form_add_discos = () => {
 
         } catch (err) {
             setDiscogsError('Erro ao obter os detalhes do lançamento.');
+            console.warn(releaseId)
             console.error(err);
         } finally {
             setDiscogsLoading(false);
