@@ -1,6 +1,6 @@
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { BsCheck2 } from "react-icons/bs";
+import { BsCheck2, BsX } from "react-icons/bs";
 import Planos_style from '../styles/Planos_style';
 import { useAuth } from '../AuthContext';
 import axios from 'axios';
