@@ -175,7 +175,41 @@ const Form_add_discos = () => {
                     }
                 })
                 .catch(error => {
-                    // ... sua lógica de catch de erro permanece idêntica
+                    if (error.response && error.response.status === 403) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Erro!",
+                            text: `A sua conta ainda não foi ativada para adicionar um disco! Assine um de nossos planos e tente novamente.`,
+                            showCancelButton: true,
+                            cancelButtonText: "Cancelar",
+                            showConfirmButton: true,
+                            confirmButtonText: "Planos"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                navigate(`/planos`);
+                            }
+                        })
+                    } else if (error.response && error.response.status === 401) {
+                        Swal.fire({
+                            icon: "info",
+                            title: "Mensagem",
+                            text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
+                            showCancelButton: false,
+                            showConfirmButton: true,
+                            confirmButtonText: "Login"
+                        }).then((result) => {
+                            logout(token);
+
+                            navigate(`/auth/login`);
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Erro!",
+                            text: `Erro interno no servidor, tente novamente mais tarde ou entre em contato com um administrador.`,
+                            showConfirmButton: true,
+                        })
+                    }
                 })
                 .finally(() => {
                     setCarregando(false);
