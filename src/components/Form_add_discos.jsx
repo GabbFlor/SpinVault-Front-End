@@ -225,11 +225,7 @@ const Form_add_discos = () => {
     };
     // NOVO: Funções para interagir com a API do Discogs
     const discogsApi = axios.create({
-        baseURL: 'https://api.discogs.com',
-        headers: {
-            // IMPORTANTE: Adicione seu token em um arquivo .env.local
-            'Authorization': `Discogs token=${import.meta.env.VITE_DISCOGS_TOKEN}`,
-        },
+        baseURL: `${apiUrl}`
     });
 
     const handleSearchByCatalogNumber = async () => {
@@ -242,15 +238,18 @@ const Form_add_discos = () => {
         setSearchResults([]);
 
         try {
-            const response = await discogsApi.get(`/database/search?catno=${catalogNumber}&type=release`);
-            if (response.data.results.length === 0) {
-                setDiscogsError('Nenhum lançamento encontrado com este número de catálogo.');
-            } else {
+            const response = await discogsApi.get(`/discos/pesquisarNoDiscogs?catalogoId=${catalogNumber}`);
+            
+            if (response.status === 200) {
                 setSearchResults(response.data.results);
             }
         } catch (err) {
-            setDiscogsError('Erro ao buscar no Discogs. Verifique sua conexão ou o token da API.');
-            console.error(err);
+            if (err.response && err.response.status === 404) {
+                setDiscogsError('Nenhum lançamento encontrado com este número de catálogo.');
+            } else {
+                setDiscogsError('Erro ao buscar no Discogs. Verifique sua conexão ou o token da API.');
+                console.error(err);
+            }
         } finally {
             setDiscogsLoading(false);
         }
