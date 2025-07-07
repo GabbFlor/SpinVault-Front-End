@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const Footer_style = createGlobalStyle `
+const Footer_style = createGlobalStyle`
     footer {
         background-color: white;
         display: flex;
@@ -27,6 +27,14 @@ const Footer_style = createGlobalStyle `
     .div-img img {
         width: 200px;
         margin: 15px;
+    }
+    .div-text {
+        display: inline-flex;
+        justify-content: center;
+    }
+    .div-text p {
+        text-align: center;
+        font-size: 1vw;
     }
 
     .div-redes-sociais {
@@ -56,11 +64,19 @@ const Footer_style = createGlobalStyle `
         .div-redes-sociais a {
             font-size: 2.25vw;
         }
+        .div-text p {
+        text-align: center;
+        font-size: 1.50vw;
+    }
     }
 
     @media (max-width: 500px) {
         .div-redes-sociais a {
             font-size: 4vw;
+        }
+        .div-text p {
+        text-align: center;
+        font-size: 1.9vw;
         }
     }
 `

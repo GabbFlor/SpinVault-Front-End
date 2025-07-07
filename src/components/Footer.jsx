@@ -14,6 +14,11 @@ const Footer = () => {
             <div className="grey-line">
                 {/* linha cinza */}
             </div>
+            <div className="div-text">
+                <p>Todo o conteúdo deste site é protegido por direitos autorais e a reprodução não autorizada é proibida. <br />
+                    Seus dados pessoais são coletados e protegidos de forma segura, em total conformidade com a Lei Geral de Proteção de Dados (LGPD). <br />
+                    Ao utilizar nosso site, você concorda com nossa Política de Privacidade e com os Termos de Uso que regem nossa plataforma.</p>
+            </div>
 
             <div className="div-redes-sociais">
                 <p>Siga:</p>
