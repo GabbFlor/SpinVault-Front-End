@@ -73,7 +73,7 @@ const Form_login = () => {
                 Swal.fire({
                     icon: "error",
                     title: "Opa, calma ae!",
-                    text: "Você realizou tentativas demais! Aguarte um pouco e tente novamente.",
+                    text: "Você realizou tentativas demais! Aguarde um pouco e tente novamente.",
                     showConfirmButton: true
                 })
             } else {
