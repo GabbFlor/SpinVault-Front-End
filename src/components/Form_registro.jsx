@@ -108,6 +108,13 @@ const Form_registro = () => {
                     text: `Email ou telefone já está sendo utilizado por outro usuário`,
                     showConfirmButton: true
                 })
+            } else if (error.response && error.response.status === 429) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Opa, calma ae!",
+                    text: "Você realizou tentativas demais! Aguarte um pouco e tente novamente.",
+                    showConfirmButton: true
+                })
             } else {
                 Swal.fire({
                     icon: "error",

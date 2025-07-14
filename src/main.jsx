@@ -26,6 +26,7 @@ import ProtectedRoutes from './ProtectedRoutes.jsx'
 import Planos from './routes/Planos.jsx'
 import FormMudarSenha from './routes/FormMudarSenha.jsx'
 import Infos_plano from './routes/Infos_plano.jsx'
+import Contato from './routes/Contato.jsx'
 
 
 const routes = createBrowserRouter([
@@ -58,13 +59,21 @@ const routes = createBrowserRouter([
         path: "/redefinir-senha",
         element: <FormMudarSenha />
       },
-      
+
       // rotas apenas para users autenticados (APLICAR LÓGICA PARA MINHA API)
       {
         path: "/home",
         element: (
           <ProtectedRoutes>
             <Home />
+          </ProtectedRoutes>
+        )
+      },
+      {
+        path: "/contato",
+        element: (
+          <ProtectedRoutes>
+            <Contato/>
           </ProtectedRoutes>
         )
       },
@@ -112,7 +121,7 @@ const routes = createBrowserRouter([
         path: "/relacao/:argumento",
         element: (
           <ProtectedRoutes>
-            <Relacao_discos /> 
+            <Relacao_discos />
           </ProtectedRoutes>
         )
       },
@@ -120,7 +129,7 @@ const routes = createBrowserRouter([
         path: "/relacao-especifica/:argumento",
         element: (
           <ProtectedRoutes>
-            <Relacao_especifica /> 
+            <Relacao_especifica />
           </ProtectedRoutes>
         )
       },
@@ -128,7 +137,7 @@ const routes = createBrowserRouter([
         path: "/busca-inteligente",
         element: (
           <ProtectedRoutes>
-            <Relacao_busca_inteligente /> 
+            <Relacao_busca_inteligente />
           </ProtectedRoutes>
         )
       },
@@ -136,7 +145,7 @@ const routes = createBrowserRouter([
         path: "/editar-disco/:id",
         element: (
           <ProtectedRoutes>
-            <Editar_disco /> 
+            <Editar_disco />
           </ProtectedRoutes>
         )
       },
@@ -144,7 +153,7 @@ const routes = createBrowserRouter([
         path: "/planos",
         element: (
           <ProtectedRoutes>
-            <Planos /> 
+            <Planos />
           </ProtectedRoutes>
         )
       },

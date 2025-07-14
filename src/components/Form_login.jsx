@@ -69,6 +69,13 @@ const Form_login = () => {
                     text: "Email ou senha incorretos, tente novamente.",
                     showConfirmButton: true
                 })
+            } else if (error.response && error.response.status === 429) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Opa, calma ae!",
+                    text: "Você realizou tentativas demais! Aguarte um pouco e tente novamente.",
+                    showConfirmButton: true
+                })
             } else {
                 Swal.fire({
                     icon: "error",
