@@ -20,7 +20,7 @@ const Editar_disco = () => {
                         <h1>Edição ou <br /> descarte dos <br />discos da <br />sua coleção</h1>
                         <p>Preencha o formulário <br />e confirme as alterações <br />para editar.</p>
 
-                        <Link to={`/relacao/titulo-album`}> {`<`} Voltar para a tabela</Link>
+                        <Link  to={`/relacao/titulo-album`}> {`<`} Voltar para a tabela</Link>
                     </div>
 
                     <Form_edit_discos id_disco={id} />

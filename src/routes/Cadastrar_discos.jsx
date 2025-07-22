@@ -14,8 +14,13 @@ const Cadastrar_discos = () => {
             <main>
                 <section className="section-form-add-disks">
                     <div className="form-esquerda">
-                        <h1>Cadastro de<br />discos do<br />Spin Vault</h1>
-                        <p>Faça o cadastro aqui<br />para adicionar os<br />seus discos!</p>
+                        <div className="esquerda-cima">
+                            <h1>Cadastro de<br />discos do<br />Spin Vault</h1>
+                            <p>Faça o cadastro aqui<br />para adicionar os<br />seus discos!</p>
+                        </div>
+                        <div className="esquerda-baixo">
+                            <p>Já tem os dados em uma planilha? Agilize seu cadastro <a href="" ><span>clique aqui</span></a> para importar seu arquivo Excel.</p>
+                        </div>
                     </div>
 
                     <Form_add_discos />
