@@ -111,7 +111,7 @@ const Form_add_discos = () => {
                 allowOutsideClick: false,
             })
         } else {
-            Swal.close();
+            Swal.close(); //TESTAR ESSA LINHA DEPOIS
         }
     }, [carregando, discogsLoading]);
 
