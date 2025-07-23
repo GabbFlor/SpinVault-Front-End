@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Form_add_discos from "../components/Form_add_discos";
 import Header from "../components/Header";
 import Cadastrar_discos_style from "../styles/Cadastrar_discos_style";
+import { Link } from "react-router-dom";
 
 const Cadastrar_discos = () => {
     return (
