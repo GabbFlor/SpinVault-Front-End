@@ -9,10 +9,11 @@ import { apiUrl } from "../API";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AdsterraColunas from "../components/AdsterraColunas";
 
 const Home = () => {
     const { token, isAuthenticated, logout } = useAuth();
-    const queryClient = useQueryClient(); 
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
 
     const catchUserProfile = async () => {
@@ -31,18 +32,18 @@ const Home = () => {
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 Swal.fire({
-                icon: "info",
-                title: "Mensagem",
-                text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
-                showCancelButton: false,
-                showConfirmButton: true,
-                confirmButtonText: "Login"
-            }).then((result) => {
+                    icon: "info",
+                    title: "Mensagem",
+                    text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
+                    showCancelButton: false,
+                    showConfirmButton: true,
+                    confirmButtonText: "Login"
+                }).then((result) => {
                     logout(token);
-                
+
                     navigate(`/auth/login`);
                 })
-            } 
+            }
 
             console.error(`Erro ao buscar peril do usuário: ${error.message}`)
             throw error;
@@ -58,7 +59,7 @@ const Home = () => {
 
         staleTime: 1000 * 60 * 5,
     });
-    
+
     useEffect(() => {
         const verificarSeTemPlanoPendente = async () => {
             try {
@@ -94,11 +95,15 @@ const Home = () => {
             <Home_Style />
 
             <Header />
-            
-            <main>
-                <h1>Controle de discos de vinil</h1>
 
-                <Grid_home />
+            <main>
+
+                <h1>Controle de discos de vinil</h1>
+                <div className="conteudo-pagina">
+                    <AdsterraColunas/>
+                    <Grid_home />
+                    <AdsterraColunas/>
+                </div>
             </main>
 
             <Footer />
