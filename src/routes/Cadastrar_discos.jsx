@@ -19,7 +19,7 @@ const Cadastrar_discos = () => {
                             <p>Faça o cadastro aqui<br />para adicionar os<br />seus discos!</p>
                         </div>
                         <div className="esquerda-baixo">
-                            <p>Já tem os dados em uma planilha? Agilize seu cadastro <a href="" ><span>clique aqui</span></a> para importar seu arquivo Excel.</p>
+                            <p>Já tem os dados em uma planilha? Agilize seu cadastro <Link to={`/cadastrar-discos/excel`}><span>clique aqui!</span></Link>  para importar seu arquivo Excel.</p>
                         </div>
                     </div>
 
