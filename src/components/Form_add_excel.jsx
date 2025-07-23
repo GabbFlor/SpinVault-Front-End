@@ -69,7 +69,11 @@ const Form_add_excel = () => {
 
         // 2. Adiciona os dados extras como uma string JSON com a chave 'dados'
         const dadosExtras = { observacoes: observacoes };
-        formData.append('dados', JSON.stringify(dadosExtras));
+        const dadosBlob = new Blob([JSON.stringify(dadosExtras)], {
+            type: 'application/json'
+        });
+
+        formData.append('dados', dadosBlob);
 
         // Endpoint ajustado para '/migracaoExcel' como no seu exemplo do Postman
         axios.post(`${apiUrl}/migracaoExcel`, formData, {
