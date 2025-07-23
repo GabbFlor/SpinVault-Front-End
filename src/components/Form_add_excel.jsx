@@ -74,8 +74,6 @@ const Form_add_excel = () => {
         // Endpoint ajustado para '/migracaoExcel' como no seu exemplo do Postman
         axios.post(`${apiUrl}/migracaoExcel`, formData, {
             headers: {
-                // O 'Content-Type' é definido automaticamente pelo axios ao usar FormData.
-                // Removê-lo manualmente evita erros de 'boundary'.
                 Authorization: `Bearer ${token}`,
             },
         })
