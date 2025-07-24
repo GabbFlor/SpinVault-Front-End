@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!token);
     const [role, setRole] = useState("")
 
-    const recuperarRole = async() => {
+    const recuperarRole = async(token) => {
             try {
                 let response = axios.get(`${apiUrl}/auth/pegarRole`, {
                     headers: {
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
         setToken(newToken);
         setIsAuthenticated(true);
 
-        recuperarRole();
+        recuperarRole(newToken);
         console.log(role);
     }
 
