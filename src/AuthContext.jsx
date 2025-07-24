@@ -9,21 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!token);
     const [role, setRole] = useState("")
 
-    // essa função recebe o token e armazena ele em cache
-    const login = (newToken) => {
-        localStorage.setItem('token', newToken);
-        setToken(newToken);
-        setIsAuthenticated(true);
-    }
-
-    const logout = () => {
-        localStorage.removeItem('token');
-        setToken(null);
-        setIsAuthenticated(false);
-    }
-
-    useEffect(() => {
-        const recuperarRole = async() => {
+    const recuperarRole = async() => {
             try {
                 let response = axios.get(`${apiUrl}/auth/pegarRole`, {
                     headers: {
@@ -44,12 +30,21 @@ export const AuthProvider = ({ children }) => {
             }
         }
 
-        if (isAuthenticated = true) {
-            recuperarRole();
+    // essa função recebe o token e armazena ele em cache
+    const login = (newToken) => {
+        localStorage.setItem('token', newToken);
+        setToken(newToken);
+        setIsAuthenticated(true);
 
-            console.log(role);
-        }
-    }, [])
+        recuperarRole();
+        console.log(role);
+    }
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        setToken(null);
+        setIsAuthenticated(false);
+    }
 
     return (
         <AuthContext.Provider value={{ token, isAuthenticated, login, logout, role}}>
