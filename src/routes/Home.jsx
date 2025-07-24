@@ -10,6 +10,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdsterraColunas from "../components/AdsterraColunas";
+import AdsTerra_style from "../styles/AdsTerra_style";
 
 const Home = () => {
     const { token, isAuthenticated, logout } = useAuth();
@@ -93,6 +94,7 @@ const Home = () => {
     return (
         <div className="Pag-Home">
             <Home_Style />
+            <AdsTerra_style/>
 
             <Header />
 
@@ -102,7 +104,6 @@ const Home = () => {
                 <div className="conteudo-pagina">
                     <AdsterraColunas/>
                     <Grid_home />
-                    <AdsterraColunas/>
                 </div>
             </main>
 

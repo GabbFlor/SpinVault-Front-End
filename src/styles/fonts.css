@@ -5,11 +5,3 @@
 /* font-family: "Jockey One", sans-serif; */
 
 
-.Ads-colunas{
-    width: 250px;
-}
-.conteudo-pagina{
-    display: flex;
-
-    flex-direction: row;
-}

@@ -142,8 +142,6 @@ const Cadastrar_discos_style = createGlobalStyle`
 }
 // Estilos para o novo campo de texto
 
-
-///////////
     .div-type, .div-select {
         display: flex;
         flex-direction: column;
