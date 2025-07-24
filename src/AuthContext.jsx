@@ -9,35 +9,12 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!token);
     const [role, setRole] = useState("")
 
-    const recuperarRole = async(token) => {
-            try {
-                let response = axios.get(`${apiUrl}/auth/pegarRole`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                if (response.status === 200) {
-                    let role = response.data.role;
-
-                    console.warn(response.data);
-
-                    setRole(role)
-                }
-            } catch (error) {
-                console.error("Erro ao recuperar a sua role.");
-
-                setRole("");
-            }
-        }
 
     // essa função recebe o token e armazena ele em cache
     const login = (newToken) => {
         localStorage.setItem('token', newToken);
         setToken(newToken);
         setIsAuthenticated(true);
-
-        recuperarRole(newToken);
-        console.log(role);
     }
 
     const logout = () => {
@@ -45,6 +22,28 @@ export const AuthProvider = ({ children }) => {
         setToken(null);
         setIsAuthenticated(false);
     }
+
+    useEffect(() => {
+        const recuperarRole = (token) => {
+            axios.get(`${apiUrl}/auth/pegarRole`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then((response) => {
+                let role = response.data.role;
+                setRole(role)
+            })
+            .catch((error) => {
+                console.error(`Erro ao recuperar a sua role. ${error}`);
+                setRole("");
+            })
+        }
+
+        if (token) {
+            recuperarRole(token);
+        }
+    }, [])
 
     return (
         <AuthContext.Provider value={{ token, isAuthenticated, login, logout, role}}>
