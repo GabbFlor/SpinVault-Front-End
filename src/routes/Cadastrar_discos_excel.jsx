@@ -15,9 +15,8 @@ const Cadastrar_discos_excel = () => {
                 <section className="section-form-add-excel">
                     <div className="form-esquerda">
                         <h1>Cadastre com a sua tabela</h1>
-                    </div>
-
-                    <Form_add_excel/>
+                    </div>                        
+                        <Form_add_excel />
                 </section>
             </main>
 

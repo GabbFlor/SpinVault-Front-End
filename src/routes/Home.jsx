@@ -13,7 +13,7 @@ import AdsterraColunas from "../components/AdsterraColunas";
 import AdsTerra_style from "../styles/AdsTerra_style";
 
 const Home = () => {
-    const { token, isAuthenticated, logout } = useAuth();
+    const { token, isAuthenticated, logout, role } = useAuth();
     const queryClient = useQueryClient();
     const navigate = useNavigate();
 
@@ -94,18 +94,16 @@ const Home = () => {
     return (
         <div className="Pag-Home">
             <Home_Style />
-            <AdsTerra_style/>
+            <AdsTerra_style />
 
             <Header />
-
-            <main>
-
-                <h1>Controle de discos de vinil</h1>
-                <div className="conteudo-pagina">
-                    <AdsterraColunas/>
+            <div className="conteudo-pagina">
+                {role === 'USER_FREE' && <AdsterraColunas />}
+                <main>
+                    <h1>Controle de discos de vinil</h1>
                     <Grid_home />
-                </div>
-            </main>
+                </main>
+            </div>
 
             <Footer />
         </div>

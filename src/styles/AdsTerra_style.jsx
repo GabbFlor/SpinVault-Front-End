@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const AdsTerra_style = createGlobalStyle`
     .Ads-colunas{
-        width: 18%;
+        width: 15%;
     }
     .conteudo-pagina{
         display: flex;
