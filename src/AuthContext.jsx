@@ -20,6 +20,8 @@ export const AuthProvider = ({ children }) => {
             if (response.status === 200) {
                 let role = response.data.role;
 
+                console.log(response.data);
+
                 setRole(role)
             }
         } catch (error) {
