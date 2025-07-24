@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [role, setRole] = useState("")
 
     // essa função recebe o token e armazena ele em cache
-    const recuperarRole = async (token) => {
+    if (isAuthenticated) {
         try {
             let response = axios.get(`${apiUrl}/auth/pegarRole`, {
                 headers: {
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
             if (response.status === 200) {
                 let role = response.data.role;
 
-                console.log(response.data);
+                console.warn(response.data);
 
                 setRole(role)
             }
@@ -35,8 +35,6 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('token', newToken);
         setToken(newToken);
         setIsAuthenticated(true);
-
-        recuperarRole(newToken)
 
         console.log(role);
     }
