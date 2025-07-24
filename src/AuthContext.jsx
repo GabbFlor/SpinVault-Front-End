@@ -35,6 +35,8 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
 
         recuperarRole(newToken)
+
+        console.log(role);
     }
 
     const logout = () => {
