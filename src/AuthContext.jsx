@@ -23,21 +23,9 @@ export const AuthProvider = ({ children }) => {
                 setRole(role)
             }
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                Swal.fire({
-                    icon: "info",
-                    title: "Mensagem",
-                    text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
-                    showCancelButton: false,
-                    showConfirmButton: true,
-                    confirmButtonText: "Login"
-                }).then((result) => {
-                    console.warn("vc e um fudido q foi tirado do nosso sistemas");
-                    
-                })
-            }
+            console.error("Erro ao recuperar a sua role.");
 
-            setRole("")
+            setRole("");
         }
     }
 
