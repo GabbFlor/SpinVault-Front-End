@@ -11,11 +11,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdsterraColunas from "../components/AdsterraColunas";
 import AdsTerra_style from "../styles/AdsTerra_style";
+import { useMediaQuery } from "react-responsive";
+import AdsterraBannerColunas from "../components/AdsterraBannerColunas";
+import AdsterraBanner from "../components/AdsterraBanner";
 
 const Home = () => {
     const { token, isAuthenticated, logout, role } = useAuth();
     const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const isNormalScreen = useMediaQuery({ minWidth: 800 })
 
     const catchUserProfile = async () => {
         try {
@@ -91,23 +95,50 @@ const Home = () => {
         verificarSeTemPlanoPendente();
     }, [])
 
-    return (
-        <div className="Pag-Home">
-            <Home_Style />
-            <AdsTerra_style />
+    if (isNormalScreen) {
+        return (
+            <div className="Pag-Home">
+                <Home_Style />
+                <AdsTerra_style />
 
-            <Header />
-            <div className="conteudo-pagina">
-                {role === 'USER_FREE' && <AdsterraColunas />}
-                <main>
-                    <h1>Controle de discos de vinil</h1>
-                    <Grid_home />
-                </main>
+                <Header />
+                <div className="conteudo-pagina">
+                    <div className="ads-pag">
+                        {role === 'USER_FREE' && <AdsterraColunas />}
+                        {role === 'USER_FREE' && <AdsterraBannerColunas />}
+                    </div>
+                    <main>
+                        <h1>Controle de discos de vinil</h1>
+                        <Grid_home />
+                    </main>
+                    
+                </div>
+
+                <Footer />
             </div>
+        )
+    }else {
+        return (
+            <div className="Pag-Home">
+                <Home_Style />
+                <AdsTerra_style />
 
-            <Footer />
-        </div>
-    )
+                <Header />
+                <div className="conteudo-pagina">
+                    <div className="ads-pag-banner">
+                        {role === 'USER_FREE' && <AdsterraBanner />}
+                    </div>
+                    <main>
+                        <h1>Controle de discos de vinil</h1>
+                        <Grid_home />
+                    </main>
+                    
+                </div>
+
+                <Footer />
+            </div>
+        )
+    }
 }
 
 export default Home;

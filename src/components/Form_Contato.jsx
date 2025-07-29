@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Form_Contato = () => {
     // Estados para o formulário de contato
-    const [nome, setNome] = useState("");
+    const [motivo, setMotivo] = useState("");
     const [email, setEmail] = useState("");
     const [mensagem, setMensagem] = useState("");
 
@@ -37,14 +37,14 @@ const Form_Contato = () => {
         e.preventDefault();
 
         // Validação para os novos campos
-        if (nome !== "" && email !== "" && mensagem !== "") {
+        if (motivo !== "" && email !== "" && mensagem !== "") {
 
             setCarregando(true);
             setInputDesativado(true);
 
             
             axios.post(`${apiUrl}/contato`, {
-                nome: nome,
+                motivo: motivo,
                 email: email,
                 mensagem: mensagem
             }, {
@@ -64,7 +64,7 @@ const Form_Contato = () => {
                         })
                             .then(() => {
                                 // Limpa o formulário
-                                setNome("");
+                                setMotivo("");
                                 setEmail("");
                                 setMensagem("");
                             })
@@ -114,7 +114,7 @@ const Form_Contato = () => {
             Swal.fire({
                 icon: "error",
                 title: "Campos Vazios!",
-                text: `Por favor, preencha todos os campos: Nome, E-mail e Mensagem.`,
+                text: `Por favor, preencha todos os campos: motivo, E-mail e Mensagem.`,
                 showConfirmButton: true,
             })
         }
@@ -125,13 +125,13 @@ const Form_Contato = () => {
             <h1 className='title-mobile'>Formulário de Contato</h1>
 
             <div className='div-type'>
-                <label htmlFor="nome">Nome</label>
+                <label htmlFor="motivo">motivo</label>
                 <input
                     type="text"
-                    name="nome"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                    placeholder='Digite seu nome completo'
+                    name="motivo"
+                    value={motivo}
+                    onChange={(e) => setMotivo(e.target.value)}
+                    placeholder='Digite o motivo do contato'
                     disabled={inputDesativado}
                 />
             </div>
