@@ -84,7 +84,7 @@ const Home = () => {
                         showCancelButton: false,
                     })
                 } else if (response.status === 204) {
-                    // console.log("nao possui plano pendente")
+                    // console.log("nao possui plano pendente"
                 }
             } catch (error) {
                 console.error(`Erro ao buscar peril do usuário: ${error.message}`)
