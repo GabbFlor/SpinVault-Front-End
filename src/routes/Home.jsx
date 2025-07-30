@@ -105,7 +105,9 @@ const Home = () => {
                 <div className="conteudo-pagina">
                     <div className="ads-pag">
                         {role === 'USER_FREE' && <AdsterraColunas />}
+                        <AdsterraColunas />
                         {role === 'USER_FREE' && <AdsterraBannerColunas />}
+                        <AdsterraBannerColunas />
                     </div>
                     <main>
                         <h1>Controle de discos de vinil</h1>
