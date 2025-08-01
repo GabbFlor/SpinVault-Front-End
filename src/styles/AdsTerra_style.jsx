@@ -33,6 +33,12 @@ const AdsTerra_style = createGlobalStyle`
         justify-items: center;
         width: 100%;
     }
+    .ads-pag-banner-Landing-page {
+        justify-items: center;
+        width: 100%;
+        height: 90px;
+        background-color: black;
+    }
     .conteudo-pagina{
         display: flex;
         flex-direction: row;

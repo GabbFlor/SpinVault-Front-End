@@ -124,7 +124,7 @@ const Planos = () => {
                     <h2>Sem surpresa. Planos simples e diretos.</h2>
                 </div>
 
-                <section className="card-section">
+                <section className="cards-section">
                     <div className="card">
                         <div>
                             <h1>Plano Free</h1>

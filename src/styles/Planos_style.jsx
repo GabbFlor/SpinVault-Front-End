@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 
-const Planos_style = createGlobalStyle `
+const Planos_style = createGlobalStyle`
     .Pag-Planos {
         display: flex;
         flex-direction: column;

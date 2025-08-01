@@ -6,6 +6,9 @@ import Footer from "../components/Footer";
 import Select from 'react-select'
 import { useMediaQuery } from '@mui/material';
 import Pesquisa_inteligente_style from "../styles/Pesquisa_inteligente_style";
+import AdsterraBanner from "../components/AdsterraBanner";
+import AdsTerra_style from "../styles/AdsTerra_style";
+import { useAuth } from "../AuthContext";
 
 // Listas para pesquisas mais aprofundadas
 const Ano_disco = [
@@ -72,13 +75,13 @@ const Relacao_busca_inteligente = () => {
     const [searchParams] = useSearchParams();
 
     // armazenando em variaveis:
-    const qBusca = searchParams.get("nomeArtista");    
+    const qBusca = searchParams.get("nomeArtista");
     const qAnoDisco = searchParams.get("anoDisco");
     const qTamanhoDisco = searchParams.get("tamanhoDisco");
     const qSituacaoDisco = searchParams.get("situacaoDisco");
     const qSituacaoCapa = searchParams.get("situacaoCapa");
     const qEstilo = searchParams.get("estilo");
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -99,20 +102,20 @@ const Relacao_busca_inteligente = () => {
 
     useEffect(() => {
         if (
-                qBusca !== null && qBusca !== "" ||
-                qAnoDisco !== null && qAnoDisco !== "" ||
-                qTamanhoDisco !== null && qTamanhoDisco !== "" ||
-                qSituacaoDisco !== null && qSituacaoDisco !== "" ||
-                qSituacaoCapa !== null && qSituacaoCapa !== "" ||
-                qEstilo !== null && qEstilo !== ""
-              ) {
-                setPesquisa(qBusca);
-                setAnoDisco(Number(qAnoDisco));
-                setTamanhoDisco(Number(qTamanhoDisco));
-                setSituacaoDisco(qSituacaoDisco);
-                setSituacaoCapa(qSituacaoCapa);
-                setEstilo(qEstilo);
-              }
+            qBusca !== null && qBusca !== "" ||
+            qAnoDisco !== null && qAnoDisco !== "" ||
+            qTamanhoDisco !== null && qTamanhoDisco !== "" ||
+            qSituacaoDisco !== null && qSituacaoDisco !== "" ||
+            qSituacaoCapa !== null && qSituacaoCapa !== "" ||
+            qEstilo !== null && qEstilo !== ""
+        ) {
+            setPesquisa(qBusca);
+            setAnoDisco(Number(qAnoDisco));
+            setTamanhoDisco(Number(qTamanhoDisco));
+            setSituacaoDisco(qSituacaoDisco);
+            setSituacaoCapa(qSituacaoCapa);
+            setEstilo(qEstilo);
+        }
     }, [searchParams])
 
     // usando o media query para ajustar a fonte
@@ -136,7 +139,7 @@ const Relacao_busca_inteligente = () => {
         container: (base) => ({
             ...base,
             width: "100%",
-          }),
+        }),
         // se refere a quando tem um valor selecionado no select
         singleValue: (base) => ({
             ...base,
@@ -170,13 +173,22 @@ const Relacao_busca_inteligente = () => {
         }),
     };
 
-    return(
+    const { token, isAuthenticated, logout, role } = useAuth();
+
+    return (
         <div className="Div-busca-inteligente Pag-relacao-discos">
             <Pesquisa_inteligente_style />
+            <AdsTerra_style />
 
             <Header />
 
             <main>
+                {/* banner ads */}
+                <section className="ads-pag-banner">
+                    <div >
+                        {role === 'USER_FREE' && <AdsterraBanner />}
+                    </div>
+                </section>
                 <h1 className="title">Pesquisa inteligente</h1>
 
                 <section className="section-geral">
@@ -186,12 +198,12 @@ const Relacao_busca_inteligente = () => {
                                 <h2 className="title-section">Filtros</h2>
 
                                 <div>
-                                    <input 
+                                    <input
                                         type="text"
                                         value={pesquisa}
                                         onChange={(e) => {
-                                                setPesquisa(e.target.value);
-                                            }
+                                            setPesquisa(e.target.value);
+                                        }
                                         }
                                         className="input-pesquisa"
                                         placeholder="Procure pelo nome do artista..."
@@ -200,58 +212,58 @@ const Relacao_busca_inteligente = () => {
                                 </div>
 
                                 <div className='div-select-pesquisa-inteligente'>
-                                        <Select 
-                                            options={Ano_disco} 
-                                            value={Ano_disco.find(option => option.value === anoDisco) || null}
-                                            onChange={(e) => setAnoDisco(e ? e.value : null)}
-                                            styles={ customStyleSelect }
-                                            placeholder="Ano do Disco"
-                                            isDisabled={inputDesativado}
-                                        />
+                                    <Select
+                                        options={Ano_disco}
+                                        value={Ano_disco.find(option => option.value === anoDisco) || null}
+                                        onChange={(e) => setAnoDisco(e ? e.value : null)}
+                                        styles={customStyleSelect}
+                                        placeholder="Ano do Disco"
+                                        isDisabled={inputDesativado}
+                                    />
                                 </div>
 
                                 <div className='div-select-pesquisa-inteligente'>
-                                        <Select 
-                                            options={Tamanhos} 
-                                            value={Tamanhos.find(option => option.value === tamanhoDisco) || null}
-                                            onChange={(e) => setTamanhoDisco(e ? e.value : null)}
-                                            styles={ customStyleSelect }
-                                            placeholder="Tamanho"
-                                            isDisabled={inputDesativado}
-                                        />
+                                    <Select
+                                        options={Tamanhos}
+                                        value={Tamanhos.find(option => option.value === tamanhoDisco) || null}
+                                        onChange={(e) => setTamanhoDisco(e ? e.value : null)}
+                                        styles={customStyleSelect}
+                                        placeholder="Tamanho"
+                                        isDisabled={inputDesativado}
+                                    />
                                 </div>
 
                                 <div className='div-select-pesquisa-inteligente'>
-                                        <Select 
-                                            options={Situacao_disco} 
-                                            value={Situacao_disco.find(option => option.value === situacaoDisco) || null}
-                                            onChange={(e) => setSituacaoDisco(e ? e.value : null)}
-                                            styles={customStyleSelect}
-                                            placeholder="Situação do disco"
-                                            isDisabled={inputDesativado}
-                                        />
+                                    <Select
+                                        options={Situacao_disco}
+                                        value={Situacao_disco.find(option => option.value === situacaoDisco) || null}
+                                        onChange={(e) => setSituacaoDisco(e ? e.value : null)}
+                                        styles={customStyleSelect}
+                                        placeholder="Situação do disco"
+                                        isDisabled={inputDesativado}
+                                    />
                                 </div>
 
                                 <div className='div-select-pesquisa-inteligente'>
-                                        <Select 
-                                            options={Situacao_capa} 
-                                            value={Situacao_capa.find(option => option.value === situacaoCapa) || null}
-                                            onChange={(e) => setSituacaoCapa(e ? e.value : null)}
-                                            styles={customStyleSelect}
-                                            placeholder="Situação da capa"
-                                            isDisabled={inputDesativado}
-                                        />
+                                    <Select
+                                        options={Situacao_capa}
+                                        value={Situacao_capa.find(option => option.value === situacaoCapa) || null}
+                                        onChange={(e) => setSituacaoCapa(e ? e.value : null)}
+                                        styles={customStyleSelect}
+                                        placeholder="Situação da capa"
+                                        isDisabled={inputDesativado}
+                                    />
                                 </div>
 
                                 <div className='div-select-pesquisa-inteligente'>
-                                        <Select 
-                                            options={Estilo} 
-                                            value={Estilo.find(option => option.value === estilo) || null}
-                                            onChange={(e) => setEstilo(e ? e.value : null)}
-                                            styles={customStyleSelect}
-                                            placeholder="Estilo"
-                                            isDisabled={inputDesativado}
-                                        />
+                                    <Select
+                                        options={Estilo}
+                                        value={Estilo.find(option => option.value === estilo) || null}
+                                        onChange={(e) => setEstilo(e ? e.value : null)}
+                                        styles={customStyleSelect}
+                                        placeholder="Estilo"
+                                        isDisabled={inputDesativado}
+                                    />
                                 </div>
 
                                 <button type="submit" className="btn-buscar" disabled={inputDesativado}>Aplicar Filtro</button>
@@ -263,7 +275,7 @@ const Relacao_busca_inteligente = () => {
                     <section className="section-table">
                         <h2 className="title-section">Resultado</h2>
 
-                        <Relacao_pesquisa 
+                        <Relacao_pesquisa
                             qBusca={qBusca === null ? "" : qBusca.toLowerCase()}
                             qAnoDisco={qAnoDisco}
                             qTamanhoDisco={qTamanhoDisco}
