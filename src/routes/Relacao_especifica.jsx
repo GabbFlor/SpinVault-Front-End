@@ -28,7 +28,7 @@ const Relacao_especifica = () => {
             <Header />
 
             <main>
-                {/* banner ads */}
+                {/* banner ads. */}
                 <section className="ads-pag-banner">
                     <div >
                         {role === 'USER_FREE' && <AdsterraBanner />}
