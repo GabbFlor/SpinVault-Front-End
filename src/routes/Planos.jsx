@@ -8,11 +8,14 @@ import { apiUrl } from '../API';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 const Planos = () => {
-    const { token, logout } = useAuth();
+    const { token, isAuthenticated, logout, role } = useAuth();
     const [carregando, setCarregando] = useState(false);
     const navigate = useNavigate();
+    const isNormalScreen = useMediaQuery({ minWidth: 800 })
+    
 
     const pegarLinkDoPlano = (id_plan) => {
         // alerta de aviso
@@ -121,7 +124,7 @@ const Planos = () => {
                     <h2>Sem surpresa. Planos simples e diretos.</h2>
                 </div>
 
-                <section className="card-section">
+                <section className="cards-section">
                     <div className="card">
                         <div>
                             <h1>Plano Free</h1>

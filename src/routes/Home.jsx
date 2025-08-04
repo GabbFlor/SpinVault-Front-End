@@ -9,11 +9,17 @@ import { apiUrl } from "../API";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AdsterraColunas from "../components/AdsterraColunas";
+import AdsTerra_style from "../styles/AdsTerra_style";
+import { useMediaQuery } from "react-responsive";
+import AdsterraBannerColunas from "../components/AdsterraBannerColunas";
+import AdsterraBanner from "../components/AdsterraBanner";
 
 const Home = () => {
-    const { token, isAuthenticated, logout } = useAuth();
-    const queryClient = useQueryClient(); 
+    const { token, isAuthenticated, logout, role } = useAuth();
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
+    const isNormalScreen = useMediaQuery({ minWidth: 800 })
 
     const catchUserProfile = async () => {
         try {
@@ -31,18 +37,18 @@ const Home = () => {
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 Swal.fire({
-                icon: "info",
-                title: "Mensagem",
-                text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
-                showCancelButton: false,
-                showConfirmButton: true,
-                confirmButtonText: "Login"
-            }).then((result) => {
+                    icon: "info",
+                    title: "Mensagem",
+                    text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
+                    showCancelButton: false,
+                    showConfirmButton: true,
+                    confirmButtonText: "Login"
+                }).then((result) => {
                     logout(token);
-                
+
                     navigate(`/auth/login`);
                 })
-            } 
+            }
 
             console.error(`Erro ao buscar peril do usuário: ${error.message}`)
             throw error;
@@ -58,7 +64,7 @@ const Home = () => {
 
         staleTime: 1000 * 60 * 5,
     });
-    
+
     useEffect(() => {
         const verificarSeTemPlanoPendente = async () => {
             try {
@@ -78,7 +84,7 @@ const Home = () => {
                         showCancelButton: false,
                     })
                 } else if (response.status === 204) {
-                    // console.log("nao possui plano pendente")
+                    // console.log("nao possui plano pendente"
                 }
             } catch (error) {
                 console.error(`Erro ao buscar peril do usuário: ${error.message}`)
@@ -89,21 +95,50 @@ const Home = () => {
         verificarSeTemPlanoPendente();
     }, [])
 
-    return (
-        <div className="Pag-Home">
-            <Home_Style />
+    if (isNormalScreen) {
+        return (
+            <div className="Pag-Home">
+                <Home_Style />
+                <AdsTerra_style />
 
-            <Header />
-            
-            <main>
-                <h1>Controle de discos de vinil</h1>
+                <Header />
+                <div className="conteudo-pagina">
+                    <div className="ads-pag">
+                        {role === 'USER_FREE' && <AdsterraColunas />}
+                        {role === 'USER_FREE' && <AdsterraBannerColunas />}
+                    </div>
+                    <main>
+                        <h1>Controle de discos de vinil</h1>
+                        <Grid_home />
+                    </main>
+                    
+                </div>
 
-                <Grid_home />
-            </main>
+                <Footer />
+            </div>
+        )
+    }else {
+        return (
+            <div className="Pag-Home">
+                <Home_Style />
+                <AdsTerra_style />
 
-            <Footer />
-        </div>
-    )
+                <Header />
+                <div className="conteudo-pagina">
+                    <div className="ads-pag-banner">
+                        {role === 'USER_FREE' && <AdsterraBanner />}
+                    </div>
+                    <main>
+                        <h1>Controle de discos de vinil</h1>
+                        <Grid_home />
+                    </main>
+                    
+                </div>
+
+                <Footer />
+            </div>
+        )
+    }
 }
 
 export default Home;

@@ -6,9 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import Landing_page_style from "../styles/Landing_page_style";
 import { BsCheck2, BsX } from "react-icons/bs";
 import Swal from "sweetalert2";
+import { useAuth } from "../AuthContext";
+import AdsTerra_style from "../styles/AdsTerra_style";
+import AdsterraBanner from "../components/AdsterraBanner";
 
 const Landing_page = () => {
     const navigate = useNavigate();
+    const { token, isAuthenticated, logout, role } = useAuth();
 
     function info_Plano() {
         Swal.fire({
@@ -29,6 +33,7 @@ const Landing_page = () => {
     return (
         <div className="Pag_landing_page">
             <Landing_page_style />
+            <AdsTerra_style />
 
             <Header_apresentacao />
 
@@ -79,6 +84,12 @@ const Landing_page = () => {
                     </section>
 
 
+                </section>
+                {/* banner ads */}
+                <section className="ads-pag-banner-Landing-page">
+                    <div >
+                        {role === 'USER_FREE' && <AdsterraBanner />}
+                    </div>
                 </section>
 
                 {/* card com apresentação da assinatura do plano */}

@@ -27,6 +27,7 @@ import Planos from './routes/Planos.jsx'
 import FormMudarSenha from './routes/FormMudarSenha.jsx'
 import Infos_plano from './routes/Infos_plano.jsx'
 import Contato from './routes/Contato.jsx'
+import Cadastrar_discos_excel from './routes/Cadastrar_discos_excel.jsx'
 
 
 const routes = createBrowserRouter([
@@ -69,6 +70,7 @@ const routes = createBrowserRouter([
           </ProtectedRoutes>
         )
       },
+      
       {
         path: "/contato",
         element: (
@@ -82,6 +84,14 @@ const routes = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <Cadastrar_discos />
+          </ProtectedRoutes>
+        )
+      },
+      {
+        path: "/cadastrar-discos/excel",
+        element: (
+          <ProtectedRoutes>
+            <Cadastrar_discos_excel/>
           </ProtectedRoutes>
         )
       },

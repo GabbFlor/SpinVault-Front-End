@@ -206,7 +206,7 @@ const Perfil_logado = () => {
                 <div className="img-temporario">
                     .
                 </div>
-                {/* IMAGEM DO PERFIL */}
+                {/* IMAGEM DO PERFIL. */}
 
                 <div className='infos-up'>
                     <h1>{userProfile.user_name}</h1>
@@ -216,7 +216,7 @@ const Perfil_logado = () => {
                         <button onClick={() => handleLogout()} className='btn-logout'>Logout</button>
                         <Link to={'/perfil/editar'} className='btn-logout'>Editar</Link>
 
-                        {userProfile.role == "BANIDO" ?
+                        {userProfile.role == "BANIDO" || userProfile.role == "USER_FREE" ?
                             (<div></div>)
                             :
                             (<Link to={"/perfil/plano"} className='btn-logout'>Plano</Link>)

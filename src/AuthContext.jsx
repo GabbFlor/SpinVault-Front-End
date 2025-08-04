@@ -1,13 +1,17 @@
-import { createContext, useContext, useState } from "react";
+import axios from "axios";
+import { apiUrl } from "./API";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [isAuthenticated, setIsAuthenticated] = useState(!!token);
+    const [role, setRole] = useState("")
+
 
     // essa função recebe o token e armazena ele em cache
-    const login = (newToken) => { 
+    const login = (newToken) => {
         localStorage.setItem('token', newToken);
         setToken(newToken);
         setIsAuthenticated(true);
@@ -19,8 +23,30 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
     }
 
+    useEffect(() => {
+        const recuperarRole = (token) => {
+            axios.get(`${apiUrl}/auth/pegarRole`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then((response) => {
+                let role = response.data.role;
+                setRole(role)
+            })
+            .catch((error) => {
+                console.error(`Erro ao recuperar a sua role. ${error}`);
+                setRole("");
+            })
+        }
+
+        if (token) {
+            recuperarRole(token);
+        }
+    }, [])
+
     return (
-        <AuthContext.Provider value={{ token, isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ token, isAuthenticated, login, logout, role}}>
             {children}
         </AuthContext.Provider>
     );

@@ -21,11 +21,12 @@ const Cadastrar_discos_style = createGlobalStyle`
         justify-content: center;
     }
 
-    .section-form-add-disks {
+    .section-form-add-excel {
         display: inline-flex;
         align-items: center;
         justify-content: space-between;
         width: 65vw;
+        height: 100%;
         max-height: 82.5vh;
         background-color: white;
         border-radius: 20px;
@@ -100,8 +101,46 @@ const Cadastrar_discos_style = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        gap: 15px;
+        justify-content: center;
+        gap: 50px;
     }
+        // Estilos do componente de upload
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    gap: 1rem;
+    border: 2px dashed #ccc;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+.upload-label {
+    display: flex;
+    align-items: center;
+    
+    gap: 0.5rem;
+    padding: 10px 20px;
+    background-color: #C47D69;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Michroma', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.upload-label:hover {
+    background-color: #a56857;
+}
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+}
+// Estilos para o novo campo de texto
 
     .div-type, .div-select {
         display: flex;
@@ -109,13 +148,17 @@ const Cadastrar_discos_style = createGlobalStyle`
         width: 100%;
         position: relative;
     }
+    .div-type textarea{
+    padding: 6px;
+    }
 
     .div-type label, .div-select label {
-        cursor: text;
+        // cursor: text;
         font-family: "Michroma", sans-serif;
         font-weight: 400;
         font-size: 1vw;
     }
+    
 
     .div-type a {
         color: #000;
@@ -267,7 +310,7 @@ const Cadastrar_discos_style = createGlobalStyle`
             top: 50%;
         }
 
-        .section-form-add-disks {
+        .section-form-add-excel {
             border-radius: 15px;
             width: 80vw;
             height: 100%;
@@ -315,7 +358,7 @@ const Cadastrar_discos_style = createGlobalStyle`
             top: 52.5%;
         }
 
-        .section-form-add-disks {
+        .section-form-add-excel {
             border-radius: 15px;
             height: 100%;
             width: 80vw;

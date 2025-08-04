@@ -291,6 +291,7 @@ const Contato_style = createGlobalStyle `
     }
 
     @media (max-width: 800px) {
+
         .form-esquerda {
             display: none;
         }
