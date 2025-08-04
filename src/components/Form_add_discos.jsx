@@ -111,117 +111,135 @@ const Form_add_discos = () => {
                 allowOutsideClick: false,
             })
         } else {
-            Swal.close(); //TESTAR ESSA LINHA DEPOIS
+            Swal.close();
         }
     }, [carregando, discogsLoading]);
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
 
-        if (nomeArtista !== "" && tituloAlbum !== "" && anoDisco !== "" && tamanhoDisco !== null && origemArtista !== null &&
-            origemDisco !== null && situacaoDisco !== null && situacaoCapa !== null && estilo !== null && tipo !== null && encarte !== null && anoDiscoTiragem !== "") {
+        // ======================= INÍCIO DA LÓGICA DE VALIDAÇÃO ATUALIZADA =======================
+        const camposObrigatorios = {
+            nomeArtista: 'Nome do Artista',
+            tituloAlbum: 'Título do Álbum',
+            anoDisco: 'Ano',
+            origemArtista: 'Origem do Artista',
+            estilo: 'Estilo'
+        };
 
-            setCarregando(true)
+        const camposVazios = [];
 
-            axios.post(`${apiUrl}/discos`, {
-                nome_artista: nomeArtista,
-                titulo_album: tituloAlbum,
-                tamanho: tamanhoDisco,
-                ano: anoDisco,
-                ano_tiragem: anoDiscoTiragem,
-                origem_artista: origemArtista,
-                origem_disco: origemDisco,
-                situacao_disco: situacaoDisco,
-                situacao_capa: situacaoCapa,
-                estilo: estilo,
-                tipo: tipo,
-                encarte: encarte,
-                observacoes: observacoes
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-                .then(response => {
-                    if (response.status === 200) {
-                        Swal.fire({
-                            icon: "success",
-                            title: "Sucesso!",
-                            text: `O álbum ${tituloAlbum} foi adicionado com sucesso!`,
-                            timer: 1500,
-                            showCancelButton: false,
-                            showConfirmButton: false
-                        })
-                            .then(() => {
-                                // Limpa o formulário completo
-                                setCatalogNumber("");
-                                setNomeArtista("");
-                                setNomeArtistaToLower("");
-                                setTituloAlbum("");
-                                setTituloAlbumToLower("");
-                                setTamanhoDisco(null);
-                                setAnoDisco("");
-                                setAnoDiscoTiragem("");
-                                setOrigemArtista(null)
-                                setOrigemDisco(null);
-                                setSituacaoDisco(null);
-                                setSituacaoCapa(null);
-                                setEstilo(null);
-                                setTipo(null);
-                                setEncarte(null);
-                                setObservacoes("")
-                                queryClient.invalidateQueries(['countDisks', token]);
-                            })
-                    }
-                })
-                .catch(error => {
-                    if (error.response && error.response.status === 403) {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Erro!",
-                            text: `A sua conta ainda não foi ativada para adicionar um disco! Assine um de nossos planos e tente novamente.`,
-                            showCancelButton: true,
-                            cancelButtonText: "Cancelar",
-                            showConfirmButton: true,
-                            confirmButtonText: "Planos"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                navigate(`/planos`);
-                            }
-                        })
-                    } else if (error.response && error.response.status === 401) {
-                        Swal.fire({
-                            icon: "info",
-                            title: "Mensagem",
-                            text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
-                            showCancelButton: false,
-                            showConfirmButton: true,
-                            confirmButtonText: "Login"
-                        }).then((result) => {
-                            logout(token);
+        if (!nomeArtista.trim()) camposVazios.push(camposObrigatorios.nomeArtista);
+        if (!tituloAlbum.trim()) camposVazios.push(camposObrigatorios.tituloAlbum);
+        if (!anoDisco.trim()) camposVazios.push(camposObrigatorios.anoDisco);
+        if (origemArtista === null) camposVazios.push(camposObrigatorios.origemArtista);
+        if (estilo === null) camposVazios.push(camposObrigatorios.estilo);
 
-                            navigate(`/auth/login`);
-                        })
-                    } else {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Erro!",
-                            text: `Erro interno no servidor, tente novamente mais tarde ou entre em contato com um administrador.`,
-                            showConfirmButton: true,
-                        })
-                    }
-                })
-                .finally(() => {
-                    setCarregando(false);
-                })
-        } else {
+        if (camposVazios.length > 0) {
             Swal.fire({
                 icon: "error",
-                title: "Erro!",
-                text: `Todos os campos do formulário devem estar preenchidos!`,
+                title: "Campos Obrigatórios",
+                html: `Por favor, preencha os seguintes campos para continuar:<br><b>${camposVazios.join(', ')}</b>`,
                 showConfirmButton: true,
-            })
+            });
+            return; // Interrompe o envio do formulário
         }
+        // ======================= FIM DA LÓGICA DE VALIDAÇÃO ATUALIZADA =======================
+
+        // Se a validação passar, o código continua para o envio
+        setCarregando(true);
+
+        axios.post(`${apiUrl}/discos`, {
+            nome_artista: nomeArtista,
+            titulo_album: tituloAlbum,
+            tamanho: tamanhoDisco,
+            ano: anoDisco,
+            ano_tiragem: anoDiscoTiragem,
+            origem_artista: origemArtista,
+            origem_disco: origemDisco,
+            situacao_disco: situacaoDisco,
+            situacao_capa: situacaoCapa,
+            estilo: estilo,
+            tipo: tipo,
+            encarte: encarte,
+            observacoes: observacoes
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Sucesso!",
+                        text: `O álbum ${tituloAlbum} foi adicionado com sucesso!`,
+                        timer: 1500,
+                        showCancelButton: false,
+                        showConfirmButton: false
+                    })
+                        .then(() => {
+                            // Limpa o formulário completo
+                            setCatalogNumber("");
+                            setNomeArtista("");
+                            setNomeArtistaToLower("");
+                            setTituloAlbum("");
+                            setTituloAlbumToLower("");
+                            setTamanhoDisco(null);
+                            setAnoDisco("");
+                            setAnoDiscoTiragem("");
+                            setOrigemArtista(null)
+                            setOrigemDisco(null);
+                            setSituacaoDisco(null);
+                            setSituacaoCapa(null);
+                            setEstilo(null);
+                            setTipo(null);
+                            setEncarte(null);
+                            setObservacoes("")
+                            queryClient.invalidateQueries(['countDisks', token]);
+                        })
+                }
+            })
+            .catch(error => {
+                if (error.response && error.response.status === 403) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Erro!",
+                        text: `A sua conta ainda não foi ativada para adicionar um disco! Assine um de nossos planos e tente novamente.`,
+                        showCancelButton: true,
+                        cancelButtonText: "Cancelar",
+                        showConfirmButton: true,
+                        confirmButtonText: "Planos"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            navigate(`/planos`);
+                        }
+                    })
+                } else if (error.response && error.response.status === 401) {
+                    Swal.fire({
+                        icon: "info",
+                        title: "Mensagem",
+                        text: `Sua sessão expirou, faça login novamente para continuar a usar os nossos serviços.`,
+                        showCancelButton: false,
+                        showConfirmButton: true,
+                        confirmButtonText: "Login"
+                    }).then((result) => {
+                        logout(token);
+
+                        navigate(`/auth/login`);
+                    })
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Erro!",
+                        text: `Erro interno no servidor, tente novamente mais tarde ou entre em contato com um administrador.`,
+                        showConfirmButton: true,
+                    })
+                }
+            })
+            .finally(() => {
+                setCarregando(false);
+            })
     };
 
     const handleSearchByCatalogNumber = async () => {
