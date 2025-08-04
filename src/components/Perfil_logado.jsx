@@ -206,7 +206,7 @@ const Perfil_logado = () => {
                 <div className="img-temporario">
                     .
                 </div>
-                {/* IMAGEM DO PERFIL */}
+                {/* IMAGEM DO PERFIL. */}
 
                 <div className='infos-up'>
                     <h1>{userProfile.user_name}</h1>
