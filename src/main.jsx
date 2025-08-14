@@ -28,7 +28,7 @@ import FormMudarSenha from './routes/FormMudarSenha.jsx'
 import Infos_plano from './routes/Infos_plano.jsx'
 import Contato from './routes/Contato.jsx'
 import Cadastrar_discos_excel from './routes/Cadastrar_discos_excel.jsx'
-import Ver_contato from './routes/ver_contato.jsx'
+import Ver_contato from './routes/Ver_contato.jsx'
 
 
 const routes = createBrowserRouter([

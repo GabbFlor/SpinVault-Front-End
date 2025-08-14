@@ -3,8 +3,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Ver_contato_style from "../styles/ver_contato_style";
 import { apiUrl } from '../API';
+import Ver_contato_style from '../styles/Ver_contato_style';
 
 const ITEMS_PER_PAGE = 10;
 
