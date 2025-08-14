@@ -16,12 +16,10 @@ const Ver_contato = () => {
     const [loadingMore, setLoadingMore] = useState(false);
 
     useEffect(() => {
-        // -> ALTERAÇÃO 1: O parâmetro da função foi ajustado para corresponder à sua API (inicioId=0).
         // A primeira busca começa com o id 0.
         fetchFeedbacks(0, true); 
     }, []);
 
-    // -> ALTERAÇÃO 2: A função agora recebe o ID do último item e um flag para a carga inicial.
     const fetchFeedbacks = async (lastId = 0, isInitialLoad = false) => {
         if (isInitialLoad) {
             setInitialLoading(true);
@@ -36,22 +34,15 @@ const Ver_contato = () => {
         }
 
         try {
-            // -> ALTERAÇÃO 3: A URL foi atualizada para usar o endpoint e o parâmetro da sua API.
             const url = `${apiUrl}/adm/contato?inicioId=${lastId}`;
             const response = await axios.get(url);
 
-            // -> ALTERAÇÃO 4: Sua API retorna um array diretamente.
             const newFeedbacks = response.data;
 
             if (newFeedbacks && newFeedbacks.length > 0) {
                  // Adiciona os novos feedbacks à lista existente
                 setFeedbacks(prevFeedbacks => [...prevFeedbacks, ...newFeedbacks]);
             }
-
-            // -> ALTERAÇÃO 5: Lógica de paginação baseada no retorno.
-            // Se a API retornar menos itens que o esperado, ou um array vazio, não há mais o que carregar.
-            // Assumimos que o backend retorna um número fixo de itens. Se não for o caso, esta lógica pode precisar de ajuste.
-            // Para este exemplo, vou assumir um limite de 10 itens por página, igual ao ITEMS_PER_PAGE.
             if (!newFeedbacks || newFeedbacks.length < ITEMS_PER_PAGE) {
                 setHasMore(false);
             }
