@@ -28,6 +28,7 @@ import FormMudarSenha from './routes/FormMudarSenha.jsx'
 import Infos_plano from './routes/Infos_plano.jsx'
 import Contato from './routes/Contato.jsx'
 import Cadastrar_discos_excel from './routes/Cadastrar_discos_excel.jsx'
+import Ver_contato from './routes/ver_contato.jsx'
 
 
 const routes = createBrowserRouter([
@@ -67,6 +68,15 @@ const routes = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <Home />
+          </ProtectedRoutes>
+        )
+      },
+
+      {
+        path: "/ver-contato",
+        element: (
+          <ProtectedRoutes>
+            <Ver_contato/>
           </ProtectedRoutes>
         )
       },
