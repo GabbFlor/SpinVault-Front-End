@@ -36,7 +36,7 @@ const Form_Contato = () => {
     const HandleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validação para os novos campos fds
+        // Validação para os novos campos
         if (motivo !== "" && email !== "" && mensagem !== "") {
 
             setCarregando(true);
