@@ -3,9 +3,9 @@ import { useAuth } from "./AuthContext"
 import { useEffect, useState } from "react";
 import { ring2 } from 'ldrs'
 
-const ProtectedRoutes = ({children}) => {
-    const { isAuthenticated, token } = useAuth();
-    const [ carregando, setCarregando ] = useState(true);
+const ProtectedRoutes = ({ children, allowedRoles }) => {
+    const { isAuthenticated, user, token } = useAuth();
+    const [carregando, setCarregando] = useState(true);
     ring2.register()
 
     useEffect(() => {
@@ -21,14 +21,24 @@ const ProtectedRoutes = ({children}) => {
                 stroke="5"
                 stroke-length="0.25"
                 bg-opacity="0.1"
-                speed="0.8" 
-                color="#C47D69" 
+                speed="0.8"
+                color="#C47D69"
             ></l-ring-2>
         </div>
     )
 
     if (!isAuthenticated) {
         return <Navigate to="/auth/login" replace />
+    }
+
+    // 3. ADICIONE A LÓGICA DE AUTORIZAÇÃO (VERIFICAÇÃO DE ROLE)
+    // Se a rota define 'allowedRoles' e a 'role' do usuário não está na lista...
+    // Usamos 'user?.role' para evitar erros caso o objeto user não tenha a propriedade 'role'.
+    const isAuthorized = allowedRoles ? allowedRoles.includes(user?.role) : true;
+
+    if (!isAuthorized) {
+        // ...redireciona o usuário para uma página segura, como a home.
+        return <Navigate to="/home" replace />;
     }
 
     return children;
