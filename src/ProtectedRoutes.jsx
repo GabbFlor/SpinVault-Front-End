@@ -30,7 +30,7 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
     if (!isAuthenticated) {
         return <Navigate to="/auth/login" replace />
     }
-    // ---- ADICIONE ESTE BLOCO DE DEBUG AQUI ----
+    // ---- ADICIONE ESTE BLOCO DE DEBUG AQUI fds ----
     console.log("--- DEBUG DE AUTORIZAÇÃO ---");
     console.log("1. Roles permitidas (allowedRoles):", allowedRoles);
     console.log("2. Role do usuário (user?.role):", user?.role);
