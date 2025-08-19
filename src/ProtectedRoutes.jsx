@@ -30,10 +30,17 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
     if (!isAuthenticated) {
         return <Navigate to="/auth/login" replace />
     }
+    // ---- ADICIONE ESTE BLOCO DE DEBUG AQUI ----
+    console.log("--- DEBUG DE AUTORIZAÇÃO ---");
+    console.log("1. Roles permitidas (allowedRoles):", allowedRoles);
+    console.log("2. Role do usuário (user?.role):", user?.role);
+    console.log("3. Objeto 'user' completo:", user); // Muito importante para ver a estrutura dos dados
+    // -----------------------------------------
 
-    
+
     const isAuthorized = allowedRoles ? allowedRoles.includes(user?.role) : true;
-
+    console.log("4. Resultado (isAuthorized):", isAuthorized);
+    console.log("------------------------------");
     if (!isAuthorized) {
         return <Navigate to="/home" replace />;
     }
