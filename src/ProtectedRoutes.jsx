@@ -31,13 +31,10 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
         return <Navigate to="/auth/login" replace />
     }
 
-    // 3. ADICIONE A LÓGICA DE AUTORIZAÇÃO (VERIFICAÇÃO DE ROLE)
-    // Se a rota define 'allowedRoles' e a 'role' do usuário não está na lista...
-    // Usamos 'user?.role' para evitar erros caso o objeto user não tenha a propriedade 'role'.
+    
     const isAuthorized = allowedRoles ? allowedRoles.includes(user?.role) : true;
 
     if (!isAuthorized) {
-        // ...redireciona o usuário para uma página segura, como a home.
         return <Navigate to="/home" replace />;
     }
 
