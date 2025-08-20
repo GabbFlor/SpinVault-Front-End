@@ -33,7 +33,11 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
     // -----------------------------------------
 
 
-    const isAuthorized = allowedRoles ? allowedRoles.includes(user?.role) : true;
+    useEffect(() => {
+        if(user) {
+            const isAuthorized = allowedRoles ? allowedRoles.includes(user?.role) : true;
+        }
+    }, [user])
 
     console.log("4. Resultado (isAuthorized):", isAuthorized);
     console.log("------------------------------");
