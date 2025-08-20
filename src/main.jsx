@@ -75,9 +75,10 @@ const routes = createBrowserRouter([
       {
         path: "/ver-contato",
         element: (
-          <ProtectedRoutes allowedRoles={['ADMIN']}>
-            <Ver_contato/>
-          </ProtectedRoutes>
+          // <ProtectedRoutes allowedRoles={['ADMIN']}>
+            
+          // </ProtectedRoutes>
+          <Ver_contato/>
         )
       },
       

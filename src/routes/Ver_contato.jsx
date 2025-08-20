@@ -17,7 +17,7 @@ const Ver_contato = () => {
 
     useEffect(() => {
         // A primeira busca começa com o id 0.
-        fetchFeedbacks(0, true); 
+        fetchFeedbacks(0, true);
     }, []);
 
     const fetchFeedbacks = async (lastId = 0, isInitialLoad = false) => {
@@ -35,12 +35,16 @@ const Ver_contato = () => {
 
         try {
             const url = `${apiUrl}/adm/contato?inicioId=${lastId}`;
-            const response = await axios.get(url);
+            const response = await axios.get(url, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
             const newFeedbacks = response.data;
 
             if (newFeedbacks && newFeedbacks.length > 0) {
-                 // Adiciona os novos feedbacks à lista existente
+                // Adiciona os novos feedbacks à lista existente
                 setFeedbacks(prevFeedbacks => [...prevFeedbacks, ...newFeedbacks]);
             }
             if (!newFeedbacks || newFeedbacks.length < ITEMS_PER_PAGE) {
@@ -58,7 +62,7 @@ const Ver_contato = () => {
                 confirmButtonText: 'Entendido'
             });
             // Se der erro, assumimos que não há mais o que carregar para evitar loops
-            setHasMore(false); 
+            setHasMore(false);
         } finally {
             if (isInitialLoad) setInitialLoading(false);
             setLoadingMore(false);
@@ -95,7 +99,7 @@ const Ver_contato = () => {
                         <p>Nenhuma mensagem de contato encontrada.</p>
                     </section>
                 )}
-                
+
                 <div className="container-carregar-mais">
                     {hasMore && !initialLoading && (
                         <button onClick={handleLoadMore} disabled={loadingMore}>
@@ -103,7 +107,7 @@ const Ver_contato = () => {
                         </button>
                     )}
                     {!hasMore && !initialLoading && feedbacks.length > 0 && (
-                         <p>Você chegou ao fim.</p>
+                        <p>Você chegou ao fim.</p>
                     )}
                 </div>
             </main>
