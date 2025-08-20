@@ -34,19 +34,13 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
     // -----------------------------------------
 
 
-    // useEffect(() => {
-    //     if(user) {
-            
-    //     }
-    // }, [user])
-
-    if (isAuthenticated) {
+    useEffect(() => {
         setIsAuthorized(allowedRoles ? allowedRoles.includes(role) : true);
 
         if (!isAuthorized) {
             return <Navigate to="/home" replace />;
         }
-    }
+    }, [isAuthenticated])
     
     console.log("4. Resultado (isAuthorized):", isAuthorized);
     console.log(`5. Role que ta puxando do auth context: ${role}`);
