@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { ring2 } from 'ldrs'
 
 const ProtectedRoutes = ({ children, allowedRoles }) => {
-    const { isAuthenticated, user, token, loading } = useAuth();
+    const { isAuthenticated, user, token, loading, role } = useAuth();
+    const [isAuthorized, setIsAuthorized] = useState(false);
     ring2.register()
 
 
@@ -33,17 +34,24 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
     // -----------------------------------------
 
 
-    useEffect(() => {
-        if(user) {
-            const isAuthorized = allowedRoles ? allowedRoles.includes(user?.role) : true;
-            console.log("4. Resultado (isAuthorized):", isAuthorized);
-            console.log("------------------------------");
+    // useEffect(() => {
+    //     if(user) {
+            
+    //     }
+    // }, [user])
 
-            if (!isAuthorized) {
-                return <Navigate to="/home" replace />;
-            }
-        }
-    }, [user])
+    if (isAuthenticated) {
+        setIsAuthorized(allowedRoles ? allowedRoles.includes(role) : true);
+    }
+
+    
+    console.log("4. Resultado (isAuthorized):", isAuthorized);
+    console.log(`5. Role que ta puxando do auth context: ${role}`);
+    console.log("------------------------------");
+
+    if (!isAuthorized) {
+        return <Navigate to="/home" replace />;
+    }
 
     
 
