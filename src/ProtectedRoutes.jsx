@@ -42,18 +42,15 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
 
     if (isAuthenticated) {
         setIsAuthorized(allowedRoles ? allowedRoles.includes(role) : true);
-    }
 
+        if (!isAuthorized) {
+            return <Navigate to="/home" replace />;
+        }
+    }
     
     console.log("4. Resultado (isAuthorized):", isAuthorized);
     console.log(`5. Role que ta puxando do auth context: ${role}`);
     console.log("------------------------------");
-
-    if (!isAuthorized) {
-        return <Navigate to="/home" replace />;
-    }
-
-    
 
     return children;
 }
