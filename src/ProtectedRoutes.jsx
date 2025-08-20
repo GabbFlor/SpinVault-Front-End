@@ -5,7 +5,6 @@ import { ring2 } from 'ldrs'
 
 const ProtectedRoutes = ({ children, allowedRoles }) => {
     const { isAuthenticated, user, token, loading, role } = useAuth();
-    const [isAuthorized, setIsAuthorized] = useState(false);
     ring2.register()
 
 
@@ -25,26 +24,22 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
     if (!isAuthenticated) {
         return <Navigate to="/auth/login" replace />
     }
-    
+
+    const isAuthorized = allowedRoles ? allowedRoles.includes(role) : true;
+
+     if (!isAuthorized) {
+        return <Navigate to="/home" replace />;
+    }
+
     // ---- ADICIONE ESTE BLOCO DE DEBUG AQUI fds ----
     console.log("--- DEBUG DE AUTORIZAÇÃO ---");
     console.log("1. Roles permitidas (allowedRoles):", allowedRoles);
     console.log("2. Role do usuário (user?.role):", user?.role);
-    console.log("3. Objeto 'user' completo:", user); // Muito importante para ver a estrutura dos dados cu
-    // -----------------------------------------
-
-
-    useEffect(() => {
-        setIsAuthorized(allowedRoles ? allowedRoles.includes(role) : true);
-
-        if (!isAuthorized) {
-            return <Navigate to="/home" replace />;
-        }
-    }, [isAuthenticated])
-    
+    console.log("3. Objeto 'user' completo:", user);
     console.log("4. Resultado (isAuthorized):", isAuthorized);
     console.log(`5. Role que ta puxando do auth context: ${role}`);
     console.log("------------------------------");
+    // -----------------------------------------
 
     return children;
 }
