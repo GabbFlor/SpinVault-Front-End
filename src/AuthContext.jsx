@@ -9,6 +9,8 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!token);
     const [role, setRole] = useState("")
 
+    const [loading, setLoading] = useState(true);
+
 
     // essa função recebe o token e armazena ele em cache
     const login = (newToken) => {
@@ -21,6 +23,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('token');
         setToken(null);
         setIsAuthenticated(false);
+        setRole("");
     }
 
     useEffect(() => {
@@ -37,16 +40,22 @@ export const AuthProvider = ({ children }) => {
             .catch((error) => {
                 console.error(`Erro ao recuperar a sua role. ${error}`);
                 setRole("");
+                logout();
             })
+            .finally(() =>{
+                setLoading(false);
+            });
         }
 
         if (token) {
             recuperarRole(token);
+        }else {
+            setLoading (false);
         }
-    }, [])
+    }, [token])
 
     return (
-        <AuthContext.Provider value={{ token, isAuthenticated, login, logout, role}}>
+        <AuthContext.Provider value={{ token, isAuthenticated, login, logout, role, loading}}>
             {children}
         </AuthContext.Provider>
     );
