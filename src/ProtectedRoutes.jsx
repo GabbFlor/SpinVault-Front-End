@@ -29,7 +29,7 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
     console.log("--- DEBUG DE AUTORIZAÇÃO ---");
     console.log("1. Roles permitidas (allowedRoles):", allowedRoles);
     console.log("2. Role do usuário (user?.role):", user?.role);
-    console.log("3. Objeto 'user' completo:", user); // Muito importante para ver a estrutura dos dados
+    console.log("3. Objeto 'user' completo:", user); // Muito importante para ver a estrutura dos dados cu
     // -----------------------------------------
 
 
