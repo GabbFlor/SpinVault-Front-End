@@ -75,19 +75,21 @@ const routes = createBrowserRouter([
       {
         path: "/ver-contato",
         element: (
-          // <ProtectedRoutes allowedRoles={['ADMIN']}>
-            
-          // </ProtectedRoutes>
-          <Ver_contato/>
+          <ProtectedRoutes allowedRoles={['ADMIN']}>
+            <Ver_contato />
+          </ProtectedRoutes>
+
+
         )
       },
-      
+
       {
         path: "/contato",
         element: (
           <ProtectedRoutes>
-            <Contato/>
+            <Contato />
           </ProtectedRoutes>
+
         )
       },
       {
@@ -102,7 +104,7 @@ const routes = createBrowserRouter([
         path: "/cadastrar-discos/excel",
         element: (
           <ProtectedRoutes>
-            <Cadastrar_discos_excel/>
+            <Cadastrar_discos_excel />
           </ProtectedRoutes>
         )
       },

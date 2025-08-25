@@ -2,8 +2,10 @@ import Logo from "../assets/logo_footer.webp"
 import { BsInstagram, BsFacebook, BsTwitterX } from "react-icons/bs"
 import Footer_style from "../styles/Footer_style";
 import { Link, } from 'react-router-dom'
+import { useAuth } from "../AuthContext";
 
 const Footer = () => {
+    const { role } = useAuth();
     return (
         <footer>
             <Footer_style />
@@ -24,6 +26,8 @@ const Footer = () => {
                 <div className="pagina-contato">
                     <nav>
                         <Link to={"/contato"}>entre em contato</Link>
+                        {role === 'ADMIN' && (<Link to={"/ver-contato"}>veja os contatos</Link>)}
+                        
                     </nav>
                 </div>
                 <div className="div-redes-sociais">

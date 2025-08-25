@@ -56,6 +56,7 @@ const Footer_style = createGlobalStyle`
     }
     .pagina-contato nav {
         display: inline-flex;
+        flex-direction: column;
         align-items: center;
         font-size: 1.45vw;
         gap: 5px;
