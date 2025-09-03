@@ -29,6 +29,7 @@ import Infos_plano from './routes/Infos_plano.jsx'
 import Contato from './routes/Contato.jsx'
 import Cadastrar_discos_excel from './routes/Cadastrar_discos_excel.jsx'
 import Ver_contato from './routes/Ver_contato.jsx'
+import Ver_tabela_excel from './routes/Ver_tabelas_excel.jsx'
 
 
 const routes = createBrowserRouter([
@@ -78,8 +79,14 @@ const routes = createBrowserRouter([
           <ProtectedRoutes allowedRoles={['ADMIN']}>
             <Ver_contato />
           </ProtectedRoutes>
-
-
+        )
+      },
+      {
+        path: "/ver-tabela-excel",
+        element: (
+          // <ProtectedRoutes allowedRoles={['ADMIN']}>
+          // </ProtectedRoutes>
+          <Ver_tabela_excel/>
         )
       },
 

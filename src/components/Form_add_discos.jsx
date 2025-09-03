@@ -176,7 +176,7 @@ const Form_add_discos = () => {
                         text: `O álbum ${tituloAlbum} foi adicionado com sucesso!`,
                         timer: 1500,
                         showCancelButton: false,
-                        showConfirmButton: false
+                        showConfirmButton: false,
                     })
                         .then(() => {
                             // Limpa o formulário completo
