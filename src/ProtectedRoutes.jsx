@@ -31,15 +31,6 @@ const ProtectedRoutes = ({ children, allowedRoles }) => {
         return <Navigate to="/home" replace />;
     }
 
-    // ---- ADICIONE ESTE BLOCO DE DEBUG AQUI fds ----
-    console.log("--- DEBUG DE AUTORIZAÇÃO ---");
-    console.log("1. Roles permitidas (allowedRoles):", allowedRoles);
-    console.log("2. Role do usuário (user?.role):", user?.role);
-    console.log("3. Objeto 'user' completo:", user);
-    console.log("4. Resultado (isAuthorized):", isAuthorized);
-    console.log(`5. Role que ta puxando do auth context: ${role}`);
-    console.log("------------------------------");
-    // -----------------------------------------
 
     return children;
 }
