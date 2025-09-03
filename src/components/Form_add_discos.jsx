@@ -169,6 +169,7 @@ const Form_add_discos = () => {
             }
         })
             .then(response => {
+                setCarregando(false);
                 if (response.status === 200) {
                     Swal.fire({
                         icon: "success",
@@ -201,6 +202,7 @@ const Form_add_discos = () => {
                 }
             })
             .catch(error => {
+                setCarregando(false);
                 if (error.response && error.response.status === 403) {
                     Swal.fire({
                         icon: "error",
@@ -237,9 +239,9 @@ const Form_add_discos = () => {
                     })
                 }
             })
-            .finally(() => {
-                setCarregando(false);
-            })
+            // .finally(() => {
+            //     setCarregando(false);
+            // })
     };
 
     const handleSearchByCatalogNumber = async () => {
@@ -252,14 +254,14 @@ const Form_add_discos = () => {
         setSearchResults([]);
 
         try {
-            const response = await axios.get(`${apiUrl}/discos/pesquisarNoDiscogs?catalogoId=${catalogNumber}`, 
+            const response = await axios.get(`${apiUrl}/discos/pesquisarNoDiscogs?catalogoId=${catalogNumber}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 }
             )
-            
+
             if (response.status === 200) {
                 setSearchResults(response.data.results);
             }
@@ -281,7 +283,7 @@ const Form_add_discos = () => {
         setSearchResults([]);
 
         try {
-            const response = await axios.get(`${apiUrl}/discos/recuperarDiscoDiscogs/${releaseId}`, 
+            const response = await axios.get(`${apiUrl}/discos/recuperarDiscoDiscogs/${releaseId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
