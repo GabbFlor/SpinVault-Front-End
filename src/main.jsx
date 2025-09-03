@@ -84,9 +84,10 @@ const routes = createBrowserRouter([
       {
         path: "/ver-tabela-excel",
         element: (
-          // <ProtectedRoutes allowedRoles={['ADMIN']}>
-          // </ProtectedRoutes>
-          <Ver_tabela_excel/>
+          <ProtectedRoutes allowedRoles={['ADMIN']}>
+            <Ver_tabela_excel />
+          </ProtectedRoutes>
+
         )
       },
 
