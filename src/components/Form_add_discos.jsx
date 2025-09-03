@@ -147,7 +147,14 @@ const Form_add_discos = () => {
         // ======================= FIM DA LÓGICA DE VALIDAÇÃO ATUALIZADA =======================
 
         // Se a validação passar, o código continua para o envio
-        setCarregando(true);
+        Swal.fire({
+            icon: "info",
+            title: "Carregando...",
+            text: "Enviando para o Spin Vault...",
+            showCancelButton: false,
+            showConfirmButton: false,
+            allowOutsideClick: false,
+        });
 
         axios.post(`${apiUrl}/discos`, {
             nome_artista: nomeArtista,
@@ -169,7 +176,7 @@ const Form_add_discos = () => {
             }
         })
             .then(response => {
-                setCarregando(false);
+                // setCarregando(false);
                 if (response.status === 200) {
                     Swal.fire({
                         icon: "success",
@@ -202,7 +209,7 @@ const Form_add_discos = () => {
                 }
             })
             .catch(error => {
-                setCarregando(false);
+                // setCarregando(false);
                 if (error.response && error.response.status === 403) {
                     Swal.fire({
                         icon: "error",
@@ -239,9 +246,6 @@ const Form_add_discos = () => {
                     })
                 }
             })
-            // .finally(() => {
-            //     setCarregando(false);
-            // })
     };
 
     const handleSearchByCatalogNumber = async () => {
