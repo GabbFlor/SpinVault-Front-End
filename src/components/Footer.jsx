@@ -26,7 +26,7 @@ const Footer = () => {
                 <div className="pagina-contato">
                     <nav>
                         <Link to={"/contato"}>entre em contato</Link>
-                        {role === 'ADMIN' && (<Link to={"/ver-contato"}>veja os contatos</Link>)}
+                        {role === 'ADMIN' && (<div className="grey-line"></div>) && (<Link to={"/ver-contato"}>veja os contatos</Link>)}
                         
                     </nav>
                 </div>
