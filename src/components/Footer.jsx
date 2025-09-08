@@ -26,12 +26,6 @@ const Footer = () => {
                 <div className="pagina-contato">
                     <nav>
                         <Link to={"/contato"}>entre em contato</Link>
-                        {role === 'ADMIN' && (
-                            <div>
-                                <div className="grey-line"></div>
-                                <Link to={"/ver-contato"}>veja os contatos</Link>
-                            </div>)}
-
                     </nav>
                 </div>
                 <div className="div-redes-sociais">
@@ -42,6 +36,11 @@ const Footer = () => {
                         <a href="https://www.facebook.com/profile.php?id=61577318084363" target="blank_"><BsFacebook /></a>
                     </nav>
                 </div>
+                {role === 'ADMIN' && (
+                    <div>
+                        <div className="grey-line"></div>
+                        <Link to={"/ver-contato"}>veja os contatos</Link>
+                    </div>)}
             </div>
 
 
