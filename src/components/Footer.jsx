@@ -41,9 +41,13 @@ const Footer = () => {
             <div className="pagina-contato">
                 {role === 'ADMIN' && (
                     <div>
-                        <div className="grey-line"></div>
+                        <div className="grey-line">
+
+                        </div>
+                        
                         <Link to={"/ver-contato"}>veja os contatos</Link>
-                        <Link to={"/ver-contato"}>veja os contatos</Link>
+                        <br/>
+                        <Link to={"/ver-tabela-excel"}>tabelas excel</Link>
                     </div>)}
             </div>
             
