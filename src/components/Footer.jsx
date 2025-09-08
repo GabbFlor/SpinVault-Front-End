@@ -36,12 +36,17 @@ const Footer = () => {
                         <a href="https://www.facebook.com/profile.php?id=61577318084363" target="blank_"><BsFacebook /></a>
                     </nav>
                 </div>
+
+            </div>
+            <div className="pagina-contato">
                 {role === 'ADMIN' && (
                     <div>
                         <div className="grey-line"></div>
                         <Link to={"/ver-contato"}>veja os contatos</Link>
+                        <Link to={"/ver-contato"}>veja os contatos</Link>
                     </div>)}
             </div>
+            
 
 
         </footer>
