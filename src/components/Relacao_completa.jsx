@@ -11,7 +11,7 @@ import { useAuth } from "../AuthContext";
 
 const Relacao_completa = ({ consulta }) => {
     const [carregando, setCarregando] = useState(false);
-    const [ sumirBtn, setSumirBtn] = useState(false);
+    const [sumirBtn, setSumirBtn] = useState(false);
     const queryClient = useQueryClient();
     // coisas do pop-up responsividade
     const [mostrarPopUp, setMostrarPopUp] = useState(false);
@@ -19,7 +19,7 @@ const Relacao_completa = ({ consulta }) => {
     const { token, logout } = useAuth();
     dotWave.register();
     const navigate = useNavigate();
-    
+
     const abrirPopUp = (dado) => {
         setDadosSelecionados(dado);
         setMostrarPopUp(true);
@@ -45,7 +45,7 @@ const Relacao_completa = ({ consulta }) => {
             if (discos.length > 0) {
                 queryClient.setQueryData(['ultimoDoc'], discos[discos.length - 1]);
             }
-        
+
             return discos;
         } catch (error) {
             if (error.status === 403) {
@@ -58,8 +58,8 @@ const Relacao_completa = ({ consulta }) => {
                     showConfirmButton: true,
                     confirmButtonText: "Planos"
                 }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate(`/planos`);
+                    if (result.isConfirmed) {
+                        navigate(`/planos`);
                     }
                 })
             } else if (error.response && error.response.status === 401) {
@@ -91,7 +91,7 @@ const Relacao_completa = ({ consulta }) => {
     };
 
     // executa a query e armazena os discos no cache
-    const { data: discos, isLoading, error } = useQuery({
+    const { data: discos, isLoading, error, status } = useQuery({
         queryKey: ['discos'],
         queryFn: pegarDadosIniciais,
         refetchOnWindowFocus: false,
@@ -101,13 +101,13 @@ const Relacao_completa = ({ consulta }) => {
 
     const carregarProximaPagina = async () => {
         const ultimoDocCache = queryClient.getQueryData(['ultimoDoc']);
-    
+
         if (!ultimoDocCache) {
             return;
         }
-    
+
         setCarregando(true);
-    
+
         try {
             const response = await axios.get(`${apiUrl}/discos/pegarVinteDiscos/${ultimoDocCache.id}`, {
                 headers: {
@@ -131,7 +131,7 @@ const Relacao_completa = ({ consulta }) => {
                 // Usa a variável segura 'novosDiscos' aqui também.
                 queryClient.setQueryData(['ultimoDoc'], novosDiscos[novosDiscos.length - 1]);
             }
-            
+
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 Swal.fire({
@@ -171,7 +171,7 @@ const Relacao_completa = ({ consulta }) => {
                 });
             });
         }
-    
+
         if (consulta === "Titulo_album") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
@@ -179,7 +179,7 @@ const Relacao_completa = ({ consulta }) => {
                 });
             });
         }
-    
+
         if (consulta === "Origem_disco") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
@@ -187,7 +187,7 @@ const Relacao_completa = ({ consulta }) => {
                 });
             });
         }
-    
+
         if (consulta === "Ano") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
@@ -195,8 +195,9 @@ const Relacao_completa = ({ consulta }) => {
                 });
             });
         }
-    }, [consulta, discos]);    
-
+    }, [consulta, discos]);
+    
+    console.log('--- STATUS DA RENDERIZAÇÃO ---', { discos, isLoading, isError, status });
 
     if (isLoading) return <p>Carregando...</p>;
 
@@ -206,7 +207,7 @@ const Relacao_completa = ({ consulta }) => {
                 <table>
                     <thead>
                         <tr className="cell-title">
-                            <th colSpan="14">Relação completa de discos 
+                            <th colSpan="14">Relação completa de discos
                                 {consulta == "Titulo_album" ? (
                                     " (Titulo)"
                                 ) : consulta == "Origem_disco" ? (
@@ -238,9 +239,9 @@ const Relacao_completa = ({ consulta }) => {
                     <tbody>
                         <tr>
                             <td colSpan="14" style={{ color: "red" }}>
-                                {error.status === 403 ? 
-                                    ("Você não tem permissão para visualizar os discos.") 
-                                        :
+                                {error.status === 403 ?
+                                    ("Você não tem permissão para visualizar os discos.")
+                                    :
                                     (`Erro interno no servidor: "${error.message}", se preciso, contate algum administrador.`)
                                 }
                             </td>
@@ -253,7 +254,7 @@ const Relacao_completa = ({ consulta }) => {
                 <table>
                     <thead>
                         <tr className="cell-title">
-                            <th colSpan="5">Relação completa de discos 
+                            <th colSpan="5">Relação completa de discos
                                 {consulta == "Titulo_album" ? (
                                     " (Titulo)"
                                 ) : consulta == "Origem_disco" ? (
@@ -276,9 +277,9 @@ const Relacao_completa = ({ consulta }) => {
                     <tbody>
                         <tr>
                             <td colSpan="5" style={{ color: "red" }}>
-                                {error.status === 403 ? 
-                                    ("Você não tem permissão para visualizar os discos.") 
-                                        :
+                                {error.status === 403 ?
+                                    ("Você não tem permissão para visualizar os discos.")
+                                    :
                                     (`Erro interno no servidor: "${error.message}", se preciso, contate algum administrador.`)
                                 }
                             </td>
@@ -287,9 +288,9 @@ const Relacao_completa = ({ consulta }) => {
                 </table>
             )
         }
-        
+
     }
-    
+
     // Como os dados agora são sempre um array, podemos simplificar a verificação.
     if (isNormalScreen) {
         return (
@@ -297,7 +298,7 @@ const Relacao_completa = ({ consulta }) => {
                 <table>
                     <thead>
                         <tr className="cell-title">
-                            <th colSpan="14">Relação completa de discos 
+                            <th colSpan="14">Relação completa de discos
                                 {consulta == "Titulo_album" ? (
                                     " (Titulo)"
                                 ) : consulta == "Origem_disco" ? (
@@ -328,7 +329,7 @@ const Relacao_completa = ({ consulta }) => {
                     </thead>
                     <tbody>
                         {
-                           discos.length > 0 ? (
+                            discos.length > 0 ? (
                                 discos.map((disco) => (
                                     <tr key={disco.id}>
                                         <td>{disco.nome_artista}</td>
@@ -352,24 +353,24 @@ const Relacao_completa = ({ consulta }) => {
                                     <td colSpan="14">Você ainda não tem nenhum disco adicionado.</td>
                                 </tr>
                             )
-                        }  
+                        }
                     </tbody>
                 </table>
-                
+
                 <div className="div-btns">
                     <button onClick={handleUpdate} className="btn-carregar">Atualizar</button>
-    
+
                     {sumirBtn == false ? (
                         <button onClick={carregarProximaPagina} className="btn-carregar">Carregar mais</button>
                     ) : ("")}
                 </div>
-    
+
                 {carregando && (
                     <div className="carregamento">
                         <l-dot-wave
                             size="60"
-                            speed="1" 
-                            color="white" 
+                            speed="1"
+                            color="white"
                         ></l-dot-wave>
                     </div>
                 )}
@@ -379,13 +380,13 @@ const Relacao_completa = ({ consulta }) => {
         return (
             <div className="div-da-table">
                 {mostrarPopUp && (
-                    <Pop_up_disco dados={dadosSelecionados} fechar={() => setMostrarPopUp(false)}/>
+                    <Pop_up_disco dados={dadosSelecionados} fechar={() => setMostrarPopUp(false)} />
                 )}
 
                 <table>
                     <thead>
                         <tr className="cell-title">
-                            <th colSpan="5">Relação completa de discos 
+                            <th colSpan="5">Relação completa de discos
                                 {consulta == "Titulo_album" ? (
                                     " (Titulo)"
                                 ) : consulta == "Origem_disco" ? (
@@ -419,16 +420,16 @@ const Relacao_completa = ({ consulta }) => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="5">Você ainda não tem nenhum disco adicionado.</td>   
+                                    <td colSpan="5">Você ainda não tem nenhum disco adicionado.</td>
                                 </tr>
                             )
-                        }  
+                        }
                     </tbody>
                 </table>
-                
+
                 <div className="div-btns">
                     <button onClick={handleUpdate} className="btn-carregar">Atualizar</button>
-    
+
                     {sumirBtn == false ? (
                         <button onClick={carregarProximaPagina} className="btn-carregar">Carregar mais</button>
                     ) : ("")}
@@ -437,8 +438,8 @@ const Relacao_completa = ({ consulta }) => {
                         <div className="carregamento">
                             <l-dot-wave
                                 size="60"
-                                speed="1" 
-                                color="white" 
+                                speed="1"
+                                color="white"
                             ></l-dot-wave>
                         </div>
                     )}
