@@ -273,7 +273,7 @@ const Relacao_internacional = () => {
                                         <td>{discoFiltrado.ano}</td>
                                         <td>{discoFiltrado.ano_tiragem}</td>
                                         <td>{discoFiltrado.origem_artista}</td>
-                                        <td>{discoFiltrado.origem_disco}</td>
+                                        <td>{discoFiltrado.origem_disco ?? '-'}</td>
                                         <td>{discoFiltrado.situacao_disco}</td>
                                         <td>{discoFiltrado.situacao_capa}</td>
                                         <td>{discoFiltrado.estilo}</td>
