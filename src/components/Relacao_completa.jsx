@@ -322,16 +322,18 @@ const Relacao_completa = ({ consulta }) => {
                                     <tr key={disco.id}>
                                         <td>{disco.nome_artista}</td>
                                         <td>{disco.titulo_album}</td>
-                                        <td>{disco.tamanho}</td>
+                                        <td>{disco.tamanho ?? '-'}</td>
                                         <td>{disco.ano}</td>
-                                        <td>{disco.ano_tiragem}</td>
+                                        <td>{disco.ano_tiragem ?? '-'}</td>
                                         <td>{disco.origem_artista}</td>
-                                        <td>{disco.origem_disco}</td>
-                                        <td>{disco.situacao_disco}</td>
-                                        <td>{disco.situacao_capa}</td>
+                                        <td>{disco.origem_disco ?? '-'}</td>
+                                        <td>{disco.situacao_disco ?? '-'}</td>
+                                        <td>{disco.situacao_capa ?? '-'}</td>
                                         <td>{disco.estilo}</td>
-                                        <td>{disco.tipo}</td>
-                                        <td>{disco.encarte == true ? "Sim" : "Não"}</td>
+                                        <td>{disco.tipo ?? '-'}</td>
+                                        <td>
+                                            {disco.encarte === true ? 'Sim' : disco.encarte === false ? 'Não' : '-'}
+                                        </td>
                                         <td>
                                             {/* Modificação para aceitar valores nulos */}
                                             {disco.observacoes && disco.observacoes.length > 10
