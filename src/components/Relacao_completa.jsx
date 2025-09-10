@@ -37,10 +37,15 @@ const Relacao_completa = ({ consulta }) => {
                 }
             })
 
-            queryClient.setQueryData(['ultimoDoc'], response.data[response.data.length - 1]);
-        
-            const discos = response.data;
+            // MODIFICAÇÃO 1: Normaliza a resposta da API.
+            // Se response.data for null, 'discos' se tornará um array vazio [].
+            const discos = response.data || [];
 
+            // MODIFICAÇÃO 2: Só define 'ultimoDoc' se houver discos.
+            if (discos.length > 0) {
+                queryClient.setQueryData(['ultimoDoc'], discos[discos.length - 1]);
+            }
+        
             return discos;
         } catch (error) {
             if (error.status === 403) {
@@ -110,17 +115,21 @@ const Relacao_completa = ({ consulta }) => {
                 }
             })
 
-            const discos = response.data;
+            // MODIFICAÇÃO 3: Normaliza a resposta da API para a paginação.
+            const novosDiscos = response.data || [];
 
-            if (discos.length === 0) {
+            // Agora a verificação de 'length' é segura.
+            if (novosDiscos.length === 0) {
                 alert("Não há mais nenhum conteúdo para ser carregado");
                 setSumirBtn(true);
             } else {
+                // Usa a variável segura 'novosDiscos'.
                 queryClient.setQueryData(['discos'], (oldDiscos = []) => {
-                    return [...oldDiscos, ...discos];
+                    return [...oldDiscos, ...novosDiscos];
                 })
 
-                queryClient.setQueryData(['ultimoDoc'], response.data[response.data.length - 1]);
+                // Usa a variável segura 'novosDiscos' aqui também.
+                queryClient.setQueryData(['ultimoDoc'], novosDiscos[novosDiscos.length - 1]);
             }
             
         } catch (error) {
@@ -151,8 +160,10 @@ const Relacao_completa = ({ consulta }) => {
         setSumirBtn(false)
     }
 
-    // ADAPTAR ESSES CÓDIGOS PARA A MINHA API (mudando o "nome_artista" para o que estiver retornando)
     useEffect(() => {
+        // MODIFICAÇÃO 4 (BÔNUS): Adiciona uma guarda para mais segurança.
+        if (!discos) return;
+
         if (consulta === "Nome_artista") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
@@ -278,8 +289,8 @@ const Relacao_completa = ({ consulta }) => {
         }
         
     }
-
-    // is normal é tela de PC e o else é o de cell
+    
+    // Como os dados agora são sempre um array, podemos simplificar a verificação.
     if (isNormalScreen) {
         return (
             <div className="div-da-table">
@@ -317,7 +328,7 @@ const Relacao_completa = ({ consulta }) => {
                     </thead>
                     <tbody>
                         {
-                           discos && discos.length > 0 ? (
+                           discos.length > 0 ? (
                                 discos.map((disco) => (
                                     <tr key={disco.id}>
                                         <td>{disco.nome_artista}</td>
