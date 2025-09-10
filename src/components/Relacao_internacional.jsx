@@ -284,7 +284,8 @@ const Relacao_internacional = () => {
                                             {disco.observacoes && disco.observacoes.length > 10
                                                 ? disco.observacoes.slice(0, 10) + "..."
                                                 : disco.observacoes}
-                                        </td>                                        <td><Link to={`/editar-disco/${discoFiltrado.id}`} className="btn-ver-mais">Editar</Link></td>
+                                        </td>
+                                        <td><Link to={`/editar-disco/${discoFiltrado.id}`} className="btn-ver-mais">Editar</Link></td>
                                     </tr>
                                 ))
                             ) : (
