@@ -21,7 +21,7 @@ const Relacao_internacional = () => {
 
     // comunicacao com a API
     const { token, logout } = useAuth();
-    
+
     // responsividade
     const isNormalScreen = useMediaQuery({ minWidth: 800 })
 
@@ -41,7 +41,7 @@ const Relacao_internacional = () => {
             })
 
             queryClient.setQueryData(["ultimoDocInternacionais"], response.data[response.data.length - 1]);
-        
+
             const discosInternacionais = response.data;
 
             return discosInternacionais;
@@ -56,8 +56,8 @@ const Relacao_internacional = () => {
                     showConfirmButton: true,
                     confirmButtonText: "Planos"
                 }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate(`/planos`);
+                    if (result.isConfirmed) {
+                        navigate(`/planos`);
                     }
                 })
             } else if (error.response && error.response.status === 401) {
@@ -81,7 +81,7 @@ const Relacao_internacional = () => {
                     showConfirmButton: true,
                 })
             }
-            
+
             throw error;
         } finally {
             setCarregando(false)
@@ -90,13 +90,13 @@ const Relacao_internacional = () => {
 
     const carregarProximaPagina = async () => {
         const ultimoDocCache = queryClient.getQueryData(['ultimoDocInternacionais']);
-    
+
         if (!ultimoDocCache) {
             return;
         }
-    
+
         setCarregando(true);
-    
+
         try {
             const response = await axios.get(`${apiUrl}/discos/pegarVinteDiscosArtistasInternacionais/${ultimoDocCache.id}`, {
                 headers: {
@@ -116,7 +116,7 @@ const Relacao_internacional = () => {
 
                 queryClient.setQueryData(['ultimoDocInternacionais'], response.data[response.data.length - 1]);
             }
-            
+
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 Swal.fire({
@@ -128,7 +128,7 @@ const Relacao_internacional = () => {
                     confirmButtonText: "Login"
                 }).then((result) => {
                     logout(token);
-            
+
                     navigate(`/auth/login`);
                 })
             }
@@ -155,12 +155,12 @@ const Relacao_internacional = () => {
     }
 
     if (isLoading) return <div className="carregamento">
-                            <l-dot-wave
-                                size="60"
-                                speed="1" 
-                                color="white" 
-                            ></l-dot-wave>
-                        </div>;
+        <l-dot-wave
+            size="60"
+            speed="1"
+            color="white"
+        ></l-dot-wave>
+    </div>;
 
     if (error) {
         if (isNormalScreen) {
@@ -192,9 +192,9 @@ const Relacao_internacional = () => {
                     <tbody>
                         <tr>
                             <td colSpan="14" style={{ color: "red" }}>
-                                {error.status === 403 ? 
-                                    ("Você não tem permissão para visualizar os discos internacionais.") 
-                                        :
+                                {error.status === 403 ?
+                                    ("Você não tem permissão para visualizar os discos internacionais.")
+                                    :
                                     (`Erro interno no servidor: "${error.message}", se preciso, contate algum administrador.`)
                                 }
                             </td>
@@ -222,9 +222,9 @@ const Relacao_internacional = () => {
                     <tbody>
                         <tr>
                             <td colSpan="5" style={{ color: "red" }}>
-                                {error.status === 403 ? 
-                                    ("Você não tem permissão para visualizar os discos internacionais.") 
-                                        :
+                                {error.status === 403 ?
+                                    ("Você não tem permissão para visualizar os discos internacionais.")
+                                    :
                                     (`Erro interno no servidor: "${error.message}", se preciso, contate algum administrador.`)
                                 }
                             </td>
@@ -279,8 +279,12 @@ const Relacao_internacional = () => {
                                         <td>{discoFiltrado.estilo}</td>
                                         <td>{discoFiltrado.tipo}</td>
                                         <td>{discoFiltrado.encarte == true ? "Sim" : "Não"}</td>
-                                        <td>{discoFiltrado.observacoes.length > 10 ? discoFiltrado.observacoes.slice(0, 10) + "..." : discoFiltrado.observacoes}</td>
-                                        <td><Link to={`/editar-disco/${discoFiltrado.id}`} className="btn-ver-mais">Editar</Link></td>
+                                        <td>
+                                            {/* Modificação para aceitar valores nulos */}
+                                            {disco.observacoes && disco.observacoes.length > 10
+                                                ? disco.observacoes.slice(0, 10) + "..."
+                                                : disco.observacoes}
+                                        </td>                                        <td><Link to={`/editar-disco/${discoFiltrado.id}`} className="btn-ver-mais">Editar</Link></td>
                                     </tr>
                                 ))
                             ) : (
@@ -293,21 +297,21 @@ const Relacao_internacional = () => {
                         }
                     </tbody>
                 </table>
-    
+
                 <div className="div-btns">
                     <button onClick={handleUpdate} className="btn-carregar">Atualizar</button>
-    
+
                     {sumirBtn == false ? (
                         <button onClick={carregarProximaPagina} className="btn-carregar">Carregar mais</button>
                     ) : ("")}
                 </div>
-    
+
                 {carregando && (
                     <div className="carregamento">
                         <l-dot-wave
                             size="60"
-                            speed="1" 
-                            color="white" 
+                            speed="1"
+                            color="white"
                         ></l-dot-wave>
                     </div>
                 )}
@@ -317,7 +321,7 @@ const Relacao_internacional = () => {
         return (
             <div className="div-da-table">
                 {mostrarPopUp && (
-                    <Pop_up_disco dados={dadosSelecionados} fechar={() => setMostrarPopUp(false)}/>
+                    <Pop_up_disco dados={dadosSelecionados} fechar={() => setMostrarPopUp(false)} />
                 )}
 
                 <table>
@@ -352,24 +356,24 @@ const Relacao_internacional = () => {
                                     </td>
                                 </tr>
                             )
-                        }  
+                        }
                     </tbody>
                 </table>
-    
+
                 <div className="div-btns">
                     <button onClick={handleUpdate} className="btn-carregar">Atualizar</button>
-    
+
                     {sumirBtn == false ? (
                         <button onClick={carregarProximaPagina} className="btn-carregar">Carregar mais</button>
                     ) : ("")}
                 </div>
-    
+
                 {carregando && (
                     <div className="carregamento">
                         <l-dot-wave
                             size="60"
-                            speed="1" 
-                            color="white" 
+                            speed="1"
+                            color="white"
                         ></l-dot-wave>
                     </div>
                 )}
