@@ -269,19 +269,39 @@ const Relacao_internacional = () => {
                                     <tr key={discoFiltrado.id}>
                                         <td>{discoFiltrado.nome_artista}</td>
                                         <td>{discoFiltrado.titulo_album}</td>
-                                        <td>{discoFiltrado.tamanho}</td>
+                                        <td>
+                                            {discoFiltrado.tamanho && discoFiltrado.tamanho.length > 0
+                                                ? discoFiltrado.tamanho
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.ano}</td>
-                                        <td>{discoFiltrado.ano_tiragem}</td>
+                                        <td>
+                                            {discoFiltrado.ano_tiragem && discoFiltrado.ano_tiragem.length > 0
+                                                ? discoFiltrado.ano_tiragem
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.origem_artista}</td>
                                         <td>
                                             {discoFiltrado.origem_disco && discoFiltrado.origem_disco.length > 0
                                                 ? discoFiltrado.origem_disco
                                                 : '-'}
                                         </td>
-                                        <td>{discoFiltrado.situacao_disco}</td>
-                                        <td>{discoFiltrado.situacao_capa}</td>
+                                        <td>
+                                            {discoFiltrado.situacao_disco && discoFiltrado.situacao_disco.length > 0
+                                                ? discoFiltrado.situacao_disco
+                                                : '-'}
+                                        </td>
+                                        <td>
+                                            {discoFiltrado.situacao_capa && discoFiltrado.situacao_capa.length > 0
+                                                ? discoFiltrado.situacao_capa
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.estilo}</td>
-                                        <td>{discoFiltrado.tipo}</td>
+                                        <td>
+                                            {discoFiltrado.tipo && discoFiltrado.tipo.length > 0
+                                                ? discoFiltrado.tipo
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.encarte == true ? "Sim" : "Não"}</td>
                                         <td>
                                             {/* Modificação para aceitar valores nulos */}
