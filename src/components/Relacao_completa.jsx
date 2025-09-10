@@ -317,7 +317,7 @@ const Relacao_completa = ({ consulta }) => {
                     </thead>
                     <tbody>
                         {
-                            discos.length > 0 ? (
+                           discos && discos.length > 0 ? (
                                 discos.map((disco) => (
                                     <tr key={disco.id}>
                                         <td>{disco.nome_artista}</td>
