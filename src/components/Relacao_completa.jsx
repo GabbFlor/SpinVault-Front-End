@@ -326,7 +326,11 @@ const Relacao_completa = ({ consulta }) => {
                                         <td>{disco.ano}</td>
                                         <td>{disco.ano_tiragem}</td>
                                         <td>{disco.origem_artista}</td>
-                                        <td>{disco.origem_disco ?? '-'}</td>
+                                        <td>
+                                            {disco.origem_disco && disco.origem_disco.length > 0
+                                                ? disco.origem_disco
+                                                : '-'}
+                                        </td>
                                         <td>{disco.situacao_disco}</td>
                                         <td>{disco.situacao_capa}</td>
                                         <td>{disco.estilo}</td>
