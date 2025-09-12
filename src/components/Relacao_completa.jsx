@@ -156,7 +156,8 @@ const Relacao_completa = ({ consulta }) => {
         if (consulta === "Nome_artista") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
-                    return a.nome_artista.localeCompare(b.nome_artista);
+                    // Adiciona a verificação para valores nulos ou indefinidos
+                    return (a.nome_artista || '').localeCompare(b.nome_artista || '');
                 });
             });
         }
@@ -164,7 +165,8 @@ const Relacao_completa = ({ consulta }) => {
         if (consulta === "Titulo_album") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
-                    return a.titulo_album.localeCompare(b.titulo_album);
+                    // Adiciona a verificação para valores nulos ou indefinidos
+                    return (a.titulo_album || '').localeCompare(b.titulo_album || '');
                 });
             });
         }
@@ -172,7 +174,8 @@ const Relacao_completa = ({ consulta }) => {
         if (consulta === "Origem_disco") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
-                    return a.origem_disco.localeCompare(b.origem_disco);
+                    // Adiciona a verificação para valores nulos ou indefinidos
+                    return (a.origem_disco || '').localeCompare(b.origem_disco || '');
                 });
             });
         }
@@ -180,11 +183,12 @@ const Relacao_completa = ({ consulta }) => {
         if (consulta === "Ano") {
             queryClient.setQueryData(['discos'], (oldData = []) => {
                 return [...oldData].sort((a, b) => {
-                    return b.ano - a.ano;
+                    // Para números, você pode tratar nulos como 0 ou outro valor padrão
+                    return (b.ano || 0) - (a.ano || 0);
                 });
             });
         }
-    }, [consulta, discos]);
+    }, [consulta, discos, queryClient]);
 
 
     if (isLoading) return <p>Carregando...</p>;
@@ -327,9 +331,7 @@ const Relacao_completa = ({ consulta }) => {
                                         <td>{disco.ano_tiragem}</td>
                                         <td>{disco.origem_artista}</td>
                                         <td>
-                                            {disco.origem_disco && disco.origem_disco.length > 0
-                                                ? disco.origem_disco
-                                                : '-'}
+                                            {disco.origem_disco}
                                         </td>
                                         <td>{disco.situacao_disco}</td>
                                         <td>{disco.situacao_capa}</td>
