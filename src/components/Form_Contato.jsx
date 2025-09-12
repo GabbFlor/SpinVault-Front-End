@@ -44,7 +44,7 @@ const Form_Contato = () => {
 
             
             axios.post(`${apiUrl}/contato`, {
-                motivo: motivo,
+                motivoContato: motivo,
                 email: email,
                 mensagem: mensagem
             }, {

@@ -21,7 +21,7 @@ const Relacao_nacional = () => {
 
     // comunicacao com a API
     const { token, logout } = useAuth();
-    
+
     // responsividade
     const isNormalScreen = useMediaQuery({ minWidth: 800 })
 
@@ -41,7 +41,7 @@ const Relacao_nacional = () => {
             })
 
             queryClient.setQueryData(["ultimoDocNacionais"], response.data[response.data.length - 1]);
-        
+
             const discosNacionais = response.data;
 
             return discosNacionais;
@@ -56,8 +56,8 @@ const Relacao_nacional = () => {
                     showConfirmButton: true,
                     confirmButtonText: "Planos"
                 }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate(`/planos`);
+                    if (result.isConfirmed) {
+                        navigate(`/planos`);
                     }
                 })
             } else if (error.response && error.response.status === 401) {
@@ -70,7 +70,7 @@ const Relacao_nacional = () => {
                     confirmButtonText: "Login"
                 }).then((result) => {
                     logout(token);
-            
+
                     navigate(`/auth/login`);
                 })
             } else {
@@ -81,7 +81,7 @@ const Relacao_nacional = () => {
                     showConfirmButton: true,
                 })
             }
-            
+
             throw error;
         } finally {
             setCarregando(false)
@@ -90,13 +90,13 @@ const Relacao_nacional = () => {
 
     const carregarProximaPagina = async () => {
         const ultimoDocCache = queryClient.getQueryData(['ultimoDocNacionais']);
-    
+
         if (!ultimoDocCache) {
             return;
         }
-    
+
         setCarregando(true);
-    
+
         try {
             const response = await axios.get(`${apiUrl}/discos/pegarVinteDiscosArtistasNacionais/${ultimoDocCache.id}`, {
                 headers: {
@@ -116,7 +116,7 @@ const Relacao_nacional = () => {
 
                 queryClient.setQueryData(['ultimoDocNacionais'], response.data[response.data.length - 1]);
             }
-            
+
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 Swal.fire({
@@ -128,7 +128,7 @@ const Relacao_nacional = () => {
                     confirmButtonText: "Login"
                 }).then((result) => {
                     logout(token);
-            
+
                     navigate(`/auth/login`);
                 })
             }
@@ -155,12 +155,12 @@ const Relacao_nacional = () => {
     }
 
     if (isLoading) return <div className="carregamento">
-                            <l-dot-wave
-                                size="60"
-                                speed="1" 
-                                color="white" 
-                            ></l-dot-wave>
-                        </div>;
+        <l-dot-wave
+            size="60"
+            speed="1"
+            color="white"
+        ></l-dot-wave>
+    </div>;
 
     if (error) {
         if (isNormalScreen) {
@@ -192,9 +192,9 @@ const Relacao_nacional = () => {
                     <tbody>
                         <tr>
                             <td colSpan="14" style={{ color: "red" }}>
-                                {error.status === 403 ? 
-                                    ("Você não tem permissão para visualizar os discos nacionais.") 
-                                        :
+                                {error.status === 403 ?
+                                    ("Você não tem permissão para visualizar os discos nacionais.")
+                                    :
                                     (`Erro interno no servidor: "${error.message}", se preciso, contate algum administrador.`)
                                 }
                             </td>
@@ -222,9 +222,9 @@ const Relacao_nacional = () => {
                     <tbody>
                         <tr>
                             <td colSpan="5" style={{ color: "red" }}>
-                                {error.status === 403 ? 
-                                    ("Você não tem permissão para visualizar os discos nacionais.") 
-                                        :
+                                {error.status === 403 ?
+                                    ("Você não tem permissão para visualizar os discos nacionais.")
+                                    :
                                     (`Erro interno no servidor: "${error.message}", se preciso, contate algum administrador.`)
                                 }
                             </td>
@@ -269,17 +269,46 @@ const Relacao_nacional = () => {
                                     <tr key={discoFiltrado.id}>
                                         <td>{discoFiltrado.nome_artista}</td>
                                         <td>{discoFiltrado.titulo_album}</td>
-                                        <td>{discoFiltrado.tamanho}</td>
+                                        <td>
+                                            {discoFiltrado.tamanho && discoFiltrado.tamanho.length > 0
+                                                ? discoFiltrado.tamanho
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.ano}</td>
-                                        <td>{discoFiltrado.ano_tiragem}</td>
+                                        <td>
+                                            {discoFiltrado.ano_tiragem && discoFiltrado.ano_tiragem.length > 0
+                                                ? discoFiltrado.ano_tiragem
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.origem_artista}</td>
-                                        <td>{discoFiltrado.origem_disco}</td>
-                                        <td>{discoFiltrado.situacao_disco}</td>
-                                        <td>{discoFiltrado.situacao_capa}</td>
+                                        <td>
+                                            {discoFiltrado.origem_disco && discoFiltrado.origem_disco.length > 0
+                                                ? discoFiltrado.origem_disco
+                                                : '-'}
+                                        </td>
+                                        <td>
+                                            {discoFiltrado.situacao_disco && discoFiltrado.situacao_disco.length > 0
+                                                ? discoFiltrado.situacao_disco
+                                                : '-'}
+                                        </td>
+                                        <td>
+                                            {discoFiltrado.situacao_capa && discoFiltrado.situacao_capa.length > 0
+                                                ? discoFiltrado.situacao_capa
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.estilo}</td>
-                                        <td>{discoFiltrado.tipo}</td>
+                                        <td>
+                                            {discoFiltrado.tipo && discoFiltrado.tipo.length > 0
+                                                ? discoFiltrado.tipo
+                                                : '-'}
+                                        </td>
                                         <td>{discoFiltrado.encarte == true ? "Sim" : "Não"}</td>
-                                        <td>{discoFiltrado.observacoes.length > 10 ? discoFiltrado.observacoes.slice(0, 10) + "..." : discoFiltrado.observacoes}</td>
+                                        <td>
+                                            {/* Modificação para aceitar valores nulos */}
+                                            {discoFiltrado.observacoes && discoFiltrado.observacoes.length > 10
+                                                ? discoFiltrado.observacoes.slice(0, 10) + "..."
+                                                : discoFiltrado.observacoes}
+                                        </td>
                                         <td><Link to={`/editar-disco/${discoFiltrado.id}`} className="btn-ver-mais">Editar</Link></td>
                                     </tr>
                                 ))
@@ -293,21 +322,21 @@ const Relacao_nacional = () => {
                         }
                     </tbody>
                 </table>
-    
+
                 <div className="div-btns">
                     <button onClick={handleUpdate} className="btn-carregar">Atualizar</button>
-    
+
                     {sumirBtn == false ? (
                         <button onClick={carregarProximaPagina} className="btn-carregar">Carregar mais</button>
                     ) : ("")}
                 </div>
-    
+
                 {carregando && (
                     <div className="carregamento">
                         <l-dot-wave
                             size="60"
-                            speed="1" 
-                            color="white" 
+                            speed="1"
+                            color="white"
                         ></l-dot-wave>
                     </div>
                 )}
@@ -317,7 +346,7 @@ const Relacao_nacional = () => {
         return (
             <div className="div-da-table">
                 {mostrarPopUp && (
-                    <Pop_up_disco dados={dadosSelecionados} fechar={() => setMostrarPopUp(false)}/>
+                    <Pop_up_disco dados={dadosSelecionados} fechar={() => setMostrarPopUp(false)} />
                 )}
 
                 <table>
@@ -352,24 +381,24 @@ const Relacao_nacional = () => {
                                     </td>
                                 </tr>
                             )
-                        }  
+                        }
                     </tbody>
                 </table>
-    
+
                 <div className="div-btns">
                     <button onClick={handleUpdate} className="btn-carregar">Atualizar</button>
-    
+
                     {sumirBtn == false ? (
                         <button onClick={carregarProximaPagina} className="btn-carregar">Carregar mais</button>
                     ) : ("")}
                 </div>
-    
+
                 {carregando && (
                     <div className="carregamento">
                         <l-dot-wave
                             size="60"
-                            speed="1" 
-                            color="white" 
+                            speed="1"
+                            color="white"
                         ></l-dot-wave>
                     </div>
                 )}
