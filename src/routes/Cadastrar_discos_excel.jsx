@@ -5,8 +5,8 @@ import Header from "../components/Header";
 import Cadastrar_discos_style from "../styles/Cadastrar_discos_excel_style";
 
 const Cadastrar_discos_excel = () => {
-    const fileUrl = '/documents/tutorial_migracao.docx';
-    const fileName = 'tutorial_migracao.docx';
+    const fileUrl = '/documents/tutorial_migracao.pdf';
+    const fileName = 'tutorial_migracao.pdf';
     return (
         <div className="Pag-cadastrar-discos">
             <Cadastrar_discos_style />
