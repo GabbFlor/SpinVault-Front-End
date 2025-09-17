@@ -141,8 +141,24 @@ const Form_add_excel = () => {
             });
     };
 
+    const fileUrl = '/documents/tutorial_migracao.pdf';
+    const fileName = 'tutorial_migracao.pdf';
+
     return (
         <form className='form-direita' onSubmit={handleSubmit}>
+            <div className="text-tutorial">
+                <p>
+                    Para facilitar você e nosso sistema siga esse tutotial.
+                    <br/>
+                    <a
+                        href={fileUrl}
+                        download={fileName} // A propriedade 'download' força o download
+                        className="botao-bonito" // Adicione uma classe para estilizar se quiser
+                    >
+                        CLIQUE AQUI
+                    </a>
+                </p>
+            </div>
             <div className="upload-container div-type">
                 <label htmlFor="file-input" className="upload-label">
                     <FaUpload />

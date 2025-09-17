@@ -90,7 +90,11 @@ const Cadastrar_discos_style = createGlobalStyle`
     .form-esquerda a:hover {
         text-decoration: underline;
     }
-
+    .text-tutorial p,.text-tutorial a{
+        font-family: "Michroma", sans-serif;
+        font-weight: 400;
+    }
+    
     .form-direita {
         background-color: white;
         width: 50%;
