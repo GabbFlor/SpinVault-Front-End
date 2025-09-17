@@ -111,10 +111,10 @@ const routes = createBrowserRouter([
       {
         path: "/cadastrar-discos/excel",
         element: (
-          // <ProtectedRoutes>
-            
-          // </ProtectedRoutes>
-          <Cadastrar_discos_excel />
+          <ProtectedRoutes>
+            <Cadastrar_discos_excel />
+          </ProtectedRoutes>
+          
 
         )
       },
