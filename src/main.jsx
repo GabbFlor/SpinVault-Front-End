@@ -30,7 +30,6 @@ import Contato from './routes/Contato.jsx'
 import Cadastrar_discos_excel from './routes/Cadastrar_discos_excel.jsx'
 import Ver_contato from './routes/Ver_contato.jsx'
 import Ver_tabela_excel from './routes/Ver_tabelas_excel.jsx'
-import Pag_ver_tabelas from './routes/Pag_ver_tabelas.jsx'
 
 
 const routes = createBrowserRouter([
@@ -86,7 +85,7 @@ const routes = createBrowserRouter([
         path: "/ver-tabela-excel",
         element: (
           <ProtectedRoutes allowedRoles={['ADMIN']}>
-            <Pag_ver_tabelas/>
+            <Ver_tabela_excel />
           </ProtectedRoutes>
 
         )
